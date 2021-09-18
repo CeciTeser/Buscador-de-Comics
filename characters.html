@@ -28,8 +28,8 @@
                     <div>
                         <label>Tipo</label>
                         <select class="type-select"aria-label="select type" id="type-select"> 
-                            <option value="comics" selected>COMICS</option>
-                            <option value="characters" >PERSONAJES</option>
+                            <option value="comics">COMICS</option>
+                            <option value="characters" selected>PERSONAJES</option>
                         </select>
 
                         <label>Orden</label>
@@ -50,10 +50,12 @@
             <p class="results-numbers"><span id="total-results"></span> RESULTADOS</p>
         </section>
 
+        <section class="hidden">
+            <div id="container-comics"></div>
+        </section>
+
         <section>
-            <div id="container-cards"></div>
-            <div class="cards-characters"></div>
-            <div class="cards-comics"></div>
+            <div id="container-characters"></div>
         </section>
 
     </main>

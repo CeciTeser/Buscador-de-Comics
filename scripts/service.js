@@ -22,11 +22,11 @@ const fetchCharacters = (offset, limit, nameStartsWith, orderBy) => {
         .then( (json) => {
             console.log(json);
             const characters = [];
-            for(const item of json.data.results){
+            for(const itemCharacter of json.data.results){
                 let character = new Character();
-                character.id = item.id;
-                character.name = item.name;
-                character.thumbnailUrl = `${item.thumbnail.path}.${item.thumbnail.extension}`;
+                character.id = itemCharacter.id;
+                character.name = itemCharacter.name;
+                character.thumbnailUrl = `${itemCharacter.thumbnail.path}.${itemCharacter.thumbnail.extension}`;
                 characters.push(character);
             }
             const charactersResponse = new CharactersResponse();
@@ -42,6 +42,7 @@ const fetchCharacters = (offset, limit, nameStartsWith, orderBy) => {
     });
     return promise;
 }
+fetchCharacters(0, 20, undefined, 'name');
 
 const fetchCharacterById = (id) => {
     const urlApi = `${getApiBaseUrl('characters/' + id)}`;
@@ -109,12 +110,12 @@ const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
         .then( (json) => {
             console.log(json);
             const comics = [];
-            for(const item of json.data.results){
+            for(const itemComic of json.data.results){
                 let comic = new Comic();
-                comic.id = item.id;
-                comic.title = item.title;
-                comic.thumbnailUrl = `${item.thumbnail.path}.${item.thumbnail.extension}`;
-                comic.modified = item.modified;
+                comic.id = itemComic.id;
+                comic.title = itemComic.title;
+                comic.thumbnailUrl = `${itemComic.thumbnail.path}.${itemComic.thumbnail.extension}`;
+                comic.modified = itemComic.modified;
                 comics.push(comic);
             }
             const comicsResponse = new ComicsResponse();
@@ -130,6 +131,7 @@ const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
     });
     return promise;
 }
+fetchComics(0, 20, undefined, 'title');
 
 const fetchComicById = (id) => {
     const urlApi = `${getApiBaseUrl('comics/' + id)}`;
@@ -185,59 +187,6 @@ const fetchCharactersByComic = (comicId, offset, limit) => {
         });
     });
     return promise;
-}
+};
 
-// TEST
-// fetchCharacters(0, 10, undefined, '-name').then(
-//     resolve = (charactersResponse) => {
-//         console.log(charactersResponse);
-//     },
-//     reject  = (error) => {
-//         console.log(error);
-//     }
-// )
 
-// fetchCharacterById(1017100).then(
-//     resolve = (character) => {
-//         console.log(character);
-//     },
-//     reject  = (error) => {
-//         console.log(error);
-//     }
-// )
-
-// fetchComicsByCharacter(1017100, 0, 20).then(
-//     resolve = (comics) => {
-//         console.log(comics);
-//     },
-//     reject  = (error) => {
-//         console.log(error);
-//     }
-// )
-
-// fetchComics(0, 10, undefined, 'title').then(
-//     resolve = (comicsResponse) => {
-//         console.log(comicsResponse);
-//     },
-//     reject  = (error) => {
-//         console.log(error);
-//     }
-// )
-
-// fetchComicById(38988).then(
-//         resolve = (comic) => {
-//             console.log(comic);
-//         },
-//         reject  = (error) => {
-//             console.log(error);
-//         }
-//     )
-
-fetchCharactersByComic(71400, 0, 10).then(
-    resolve = (charactersResponse) => {
-        console.log(charactersResponse);
-    },
-    reject = (error) => {
-        console.log(error)
-    }
-)
