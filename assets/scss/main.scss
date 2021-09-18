@@ -1,10 +1,11 @@
-@import "./base/reset";
+@import "./base/reset.scss";
 @import "./base/typography";
 @import "./utils/variables";
 @import "./components/search";
+@import "./components/results";
 @import "./layout/header";
-
-
+@import "./layout/comics";
+@import "./layout/characters.scss";
 
 
 
@@ -14,3 +15,6 @@ body{
     align-items: center;
 };
 
+.hidden{
+    display: none;
+};

@@ -1,6 +1,7 @@
 .search{
-    margin: 50px;
+    margin-top: 50px;
     font-family: 'Barlow Semi Condensed', sans-serif;
+
 
     h3{
         display: block;
@@ -11,15 +12,16 @@
     }
 
     .search-container{
-        width: 55rem;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;  
+        justify-content: space-between;
+
     }
 
     .search-input-container{
 
         .search-input{
+            width: 25rem;
             font-size: 1.5rem;
             border: none;
             border-bottom: 2px solid black;
