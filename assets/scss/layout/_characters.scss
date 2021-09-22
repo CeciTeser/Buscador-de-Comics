@@ -1,13 +1,6 @@
-#container-cards{
-    width: 70rem;
-    height: 100%;
-    display: flex;
-    flex-wrap: wrap;
-
-
     .cards-characters{
-        width: 11rem;
-        height: 23rem;
+        width: 10rem;
+        height: 22rem;
         background-color: $third-color;
         overflow: hidden;
         object-fit: contain;      
@@ -19,7 +12,7 @@
     }
     h3{
     font-family:Arial, Helvetica, sans-serif ;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: bold;
     letter-spacing: 0.1rem;
     color: $primary-color;
@@ -40,5 +33,3 @@
         transition-timing-function: ease;
     }
     
-};
-

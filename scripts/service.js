@@ -1,5 +1,9 @@
+// ------------------VARIABLES-------------------------
+
 const publicKey = '599dd05f6c024df338ffe852c0ab7ab6';
 const privateKey = '00c84ded5b2ef0ea50b0bd5e553aa2c9a2102b2e';
+
+// ------------------URL API-------------------------
 
 const getApiBaseUrl = (service) => {
     const ts = Date.now();
@@ -7,6 +11,10 @@ const getApiBaseUrl = (service) => {
     const urlApi = `https://gateway.marvel.com:443/v1/public/${service}?ts=${ts}&apikey=${publicKey}&hash=${hash}`;
     return urlApi;
 }
+
+// ------------------ CHARACTERS -------------------------
+
+// ------------------FETCH CHARACTERS-------------------------
 
 const fetchCharacters = (offset, limit, nameStartsWith, orderBy) => {
     let urlApi = `${getApiBaseUrl('characters')}&offset=${offset}&limit=${limit}`;
@@ -20,7 +28,6 @@ const fetchCharacters = (offset, limit, nameStartsWith, orderBy) => {
         fetch(urlApi)
         .then(res => res.json())
         .then( (json) => {
-            console.log(json);
             const characters = [];
             for(const itemCharacter of json.data.results){
                 let character = new Character();
@@ -43,13 +50,14 @@ const fetchCharacters = (offset, limit, nameStartsWith, orderBy) => {
     return promise;
 }
 
+// ------------------FETCH CHARACTERS BY ID-------------------------
+
 const fetchCharacterById = (id) => {
     const urlApi = `${getApiBaseUrl('characters/' + id)}`;
     let promise = new Promise(function(resolve, reject) {
         fetch(urlApi)
         .then(res => res.json())
         .then( (json) => {
-            console.log(json);
             let item = json.data.results[0];
             let character = new Character();
             character.id = item.id;
@@ -64,13 +72,14 @@ const fetchCharacterById = (id) => {
     return promise;
 }
 
+// ------------------FETCH COMICS BY CHARACTERS-------------------------
+
 const fetchComicsByCharacter = (characterId, offset, limit) => {
     const urlApi = `${getApiBaseUrl(`characters/${characterId}/comics`)}&offset=${offset}&limit=${limit}`;
     let promise = new Promise(function(resolve, reject) {
         fetch(urlApi)
         .then(res => res.json())
         .then( (json) => {
-            console.log(json);
             const comics = [];
             for(const item of json.data.results){
                 let comic = new Comic();
@@ -93,7 +102,9 @@ const fetchComicsByCharacter = (characterId, offset, limit) => {
     return promise;
 }
 
-// Comics
+// ------------------ COMICS -------------------------
+
+// ------------------FETCH COMICS-------------------------
 
 const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
     let urlApi = `${getApiBaseUrl('comics')}&offset=${offset}&limit=${limit}`;
@@ -107,7 +118,6 @@ const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
         fetch(urlApi)
         .then(res => res.json())
         .then( (json) => {
-            // console.log(json);
             const comics = [];
             for(const itemComic of json.data.results){
                 let comic = new Comic();
@@ -129,7 +139,9 @@ const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
         });
     });
     return promise;
-}
+};
+
+// ------------------FETCH COMICS BY ID-------------------------
 
 const fetchComicById = (id) => {
     const urlApi = `${getApiBaseUrl('comics/' + id)}`;
@@ -137,7 +149,6 @@ const fetchComicById = (id) => {
         fetch(urlApi)
         .then(res => res.json())
         .then((json) => {
-            // console.log(json);
             let item = json.data.results[0];
             let comic = new Comic();
             let creators = [];
@@ -147,16 +158,17 @@ const fetchComicById = (id) => {
             comic.modified = item.modified;
             for(const creator of item.creators.items){
                 creators.push(creator.name);
-                // console.log(creator.name);
             }
             comic.creators = creators;
             resolve(comic);
         }).catch((error) => {
             reject('Hubo un problema con la petición Fetch:' + error.message);  
-        })
-    })
+        });
+    });
     return promise;
-}
+};
+
+// ------------------FETCH CHARACTERS BY COMICS-------------------------
 
 const fetchCharactersByComic = (comicId, offset, limit) => {
     const urlApi = `${getApiBaseUrl(`comics/${comicId}/characters`)}&offset=${offset}&limit=${limit}`;
@@ -164,7 +176,6 @@ const fetchCharactersByComic = (comicId, offset, limit) => {
         fetch(urlApi)
         .then(res => res.json())
         .then( (json) => {
-            // console.log(json);
             const characters = [];
             for(const item of json.data.results){
                 let character = new Character();
