@@ -1,0 +1,14 @@
+#container-paged{
+    justify-content: center;
+    text-align: center;
+    nav{
+        display: inline-block;
+        list-style-type: none;
+    }
+}
+
+li{
+    display: inline;
+    margin: 5px;
+    font-size: 20px;
+}

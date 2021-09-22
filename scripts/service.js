@@ -42,7 +42,6 @@ const fetchCharacters = (offset, limit, nameStartsWith, orderBy) => {
     });
     return promise;
 }
-fetchCharacters(0, 20, undefined, 'name');
 
 const fetchCharacterById = (id) => {
     const urlApi = `${getApiBaseUrl('characters/' + id)}`;
@@ -108,7 +107,7 @@ const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
         fetch(urlApi)
         .then(res => res.json())
         .then( (json) => {
-            console.log(json);
+            // console.log(json);
             const comics = [];
             for(const itemComic of json.data.results){
                 let comic = new Comic();
@@ -131,7 +130,6 @@ const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
     });
     return promise;
 }
-fetchComics(0, 20, undefined, 'title');
 
 const fetchComicById = (id) => {
     const urlApi = `${getApiBaseUrl('comics/' + id)}`;
@@ -139,7 +137,7 @@ const fetchComicById = (id) => {
         fetch(urlApi)
         .then(res => res.json())
         .then((json) => {
-            console.log(json);
+            // console.log(json);
             let item = json.data.results[0];
             let comic = new Comic();
             let creators = [];
@@ -149,7 +147,7 @@ const fetchComicById = (id) => {
             comic.modified = item.modified;
             for(const creator of item.creators.items){
                 creators.push(creator.name);
-                console.log(creator.name);
+                // console.log(creator.name);
             }
             comic.creators = creators;
             resolve(comic);
@@ -166,7 +164,7 @@ const fetchCharactersByComic = (comicId, offset, limit) => {
         fetch(urlApi)
         .then(res => res.json())
         .then( (json) => {
-            console.log(json);
+            // console.log(json);
             const characters = [];
             for(const item of json.data.results){
                 let character = new Character();
@@ -188,5 +186,3 @@ const fetchCharactersByComic = (comicId, offset, limit) => {
     });
     return promise;
 };
-
-
