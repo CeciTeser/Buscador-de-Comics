@@ -40,3 +40,9 @@ class ComicsResponse extends PagedResponse  {
         this.comics = comics;
     }
 }
+
+type Filter ={
+    type?: string,
+    orderBy?: string,
+    nameStartsWith?: string, 
+}

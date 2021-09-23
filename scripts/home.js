@@ -4,9 +4,7 @@ var limit = 20;
 var params = new URLSearchParams(window.location.search);
 var page = params.get('page') == undefined ? 1 : params.get('page');
 var offset = (page - 1) * limit;
-var searchButton = document.getElementById('search-button');
-var typeSelect = document.getElementById('type-select');
-var paramType = new URLSearchParams(window.location.search);
+var formSearch = document.getElementById('form-search');
 // ------------------DISPLAY GRID CARD-------------------------
 var displayGridCard = function (type, nameStartsWith, orderBy) {
     if (type === 'characters') {
@@ -19,7 +17,7 @@ var displayGridCard = function (type, nameStartsWith, orderBy) {
 // ------------------RESULTS CHARACTERS-------------------------
 var displayResultCharacters = function (nameStartsWith, orderBy) {
     var promise = fetchCharacters(offset, limit, nameStartsWith, orderBy);
-    var url = './aca va el html que lleva al detalle de un personaje';
+    var url = './detail-card.html';
     promise.then(function (charactersResponse) {
         var content = '';
         for (var _i = 0, _a = charactersResponse.characters; _i < _a.length; _i++) {
@@ -37,7 +35,7 @@ var displayResultCharacters = function (nameStartsWith, orderBy) {
 // ------------------RESULTS COMICS-------------------------
 var displayResultComics = function (nameStartsWith, orderBy) {
     var promise = fetchComics(offset, limit, nameStartsWith, orderBy);
-    var url = './aca va el html que lleva al detalle de un comic';
+    var url = './detail-card.html';
     promise.then(function (comicsResponse) {
         var content = '';
         for (var _i = 0, _a = comicsResponse.comics; _i < _a.length; _i++) {
@@ -52,21 +50,31 @@ var displayResultComics = function (nameStartsWith, orderBy) {
     }, function (error) {
     });
 };
-// ------------------DISPLAY GRID CARD-------------------------
+// ------------------ ASSEMBLE CARD -------------------------
 var getCellHTML = function (classCard, url, thumbnailUrl, alt, title) {
     var cellHTML = "<div class=\"" + classCard + "\"><a href=\"" + url + "\"><img src=\"" + thumbnailUrl + "\" alt=\"" + alt + "\"></a><h3>" + title + "</h3></div>";
     return cellHTML;
 };
-// displayGridCard('characters', undefined, undefined);
-// displayGridCard('comics', undefined, undefined);
-// ------------------DISPLAY BY TYPE-------------------------
-var showType = function (event) {
+// ------------------DISPLAY BY FILTER-------------------------
+var getFiltersSearch = function (event) {
     event.preventDefault();
-    paramType.set("type", typeSelect.value);
-    window.location.href = ("index.html?" + paramType).toString();
+    var form = event.target;
+    var myFilters = {
+        type: form.typeselect.value,
+        orderBy: form.orderselect.value,
+        nameStartsWith: form.namestartswith.value
+    };
+    params.set("type", myFilters.type);
+    params.set("orderby", myFilters.orderBy);
+    params.set("nameStartsWith", myFilters.nameStartsWith);
+    window.location.href = ("index.html?" + params).toString();
 };
-searchButton.addEventListener('click', showType);
-displayGridCard(paramType.get('type') || 'comic', undefined, undefined);
+formSearch.addEventListener('submit', getFiltersSearch);
+var type = params.get("type") || 'comics';
+var orderBy = params.get("orderby");
+var nameStartWith = params.get("nameStartsWith");
+displayGridCard(type, undefined, undefined);
+console.log(type, nameStartWith, orderBy);
 // ------------------PAGINATION-------------------------
 var displayPaged = function (total) {
     var qtyPages = Math.ceil(total / limit);
