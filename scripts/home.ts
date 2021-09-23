@@ -6,29 +6,34 @@ const params = new URLSearchParams(window.location.search);
 const page = params.get('page') == undefined ? 1 : params.get('page');
 const offset = (page - 1) * limit;
 
-const searchButton = document.getElementById('search-button');
-const typeSelect = document.getElementById('type-select');
-let paramType = new URLSearchParams(window.location.search);
+const formSearch = document.getElementById('form-search');
+
 
 // ------------------DISPLAY GRID CARD-------------------------
 
 const displayGridCard = (type, nameStartsWith, orderBy) => {
+    
+
     if(type === 'characters'){
         displayResultCharacters(nameStartsWith, orderBy);
-    }else{
-        displayResultComics(nameStartsWith, orderBy);    
+        
+    
+    }else {
+        displayResultComics(nameStartsWith, orderBy);
+
     }
+
 };
 
 // ------------------RESULTS CHARACTERS-------------------------
 
 const displayResultCharacters = (nameStartsWith, orderBy) => {
     const promise = fetchCharacters(offset, limit, nameStartsWith, orderBy);
-    var url = './aca va el html que lleva al detalle de un personaje';
+    const url = './detail-card.html';
     promise.then(
         (charactersResponse) => {
-            var content = '';
-            for (var character of charactersResponse.characters) {
+            let content = '';
+            for (const character of charactersResponse.characters) {
                 const cell = getCellHTML('cards-characters', url, character.thumbnailUrl, character.name,  character.name);
                 content += cell;
             }
@@ -43,15 +48,16 @@ const displayResultCharacters = (nameStartsWith, orderBy) => {
     );
 };
 
+
 // ------------------RESULTS COMICS-------------------------
 
 const displayResultComics = (nameStartsWith, orderBy) => {
     const promise = fetchComics(offset, limit, nameStartsWith, orderBy);
-    var url = './aca va el html que lleva al detalle de un comic';
+    const url = './detail-card.html';
     promise.then(
         (comicsResponse) => {
-            var content = '';
-            for (var comic of comicsResponse.comics) {
+            let content = '';
+            for (const comic of comicsResponse.comics) {
                 const cell = getCellHTML('cards-comics', url, comic.thumbnailUrl, comic.title,  comic.title);
                 content += cell;
             }
@@ -65,32 +71,42 @@ const displayResultComics = (nameStartsWith, orderBy) => {
         }
     );
 };
-
-// ------------------DISPLAY GRID CARD-------------------------
+// ------------------ ASSEMBLE CARD -------------------------
 
 const getCellHTML = (classCard, url, thumbnailUrl, alt, title ) =>{
     const cellHTML = "<div class=\"" + classCard + "\"><a href=\"" + url + "\"><img src=\"" + thumbnailUrl + "\" alt=\"" + alt + "\"></a><h3>" + title + "</h3></div>";
     return cellHTML;
 };
 
-// displayGridCard('characters', undefined, undefined);
-// displayGridCard('comics', undefined, undefined);
+// ------------------DISPLAY BY FILTER-------------------------
 
-// ------------------DISPLAY BY TYPE-------------------------
+const getFiltersSearch = (event) =>{
+    
+    event.preventDefault(); 
+    const form = event.target
 
-const showType = (event) =>{
-    
-    event.preventDefault();
-    
-    paramType.set("type", typeSelect.value) 
+    const myFilters ={
+		type: form.typeselect.value,
+		orderBy: form.orderselect.value,
+        nameStartsWith: form.namestartswith.value,
+	};
+
+    params.set("type",myFilters.type)
+    params.set("orderby", myFilters.orderBy) 
+    params.set("nameStartsWith", myFilters.nameStartsWith) 
         
-    window.location.href=`index.html?${paramType}`.toString();
+    window.location.href=`index.html?${params}`.toString();
 
 };
-searchButton.addEventListener('click', showType);
+formSearch.addEventListener('submit', getFiltersSearch);
+
+let type = params.get("type")||'comics'
+let orderBy= params.get("orderby")
+let nameStartWith = params.get("nameStartsWith")
 
 
-displayGridCard(paramType.get('type')||'comic', undefined, undefined)
+displayGridCard(type,undefined,undefined);
+console.log(type,nameStartWith, orderBy)
 
 // ------------------PAGINATION-------------------------
 
@@ -148,4 +164,4 @@ const displayPaged = (total) =>{
     }
 
     pagesList.innerHTML = listContent;
-}
+};

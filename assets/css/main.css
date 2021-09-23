@@ -74,6 +74,17 @@ body {
     font-weight: 500;
     color: #7a7b8f; }
 
+#container-paged {
+  justify-content: center;
+  text-align: center; }
+  #container-paged nav {
+    display: inline-block;
+    list-style-type: none; }
+  #container-paged li {
+    display: inline;
+    margin: 5px;
+    font-size: 20px; }
+
 .header {
   width: 100%;
   height: 25rem;
