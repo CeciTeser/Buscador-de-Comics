@@ -3,132 +3,170 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
 .search {
   width: 63rem;
   margin-top: 50px;
-  font-family: 'Barlow Semi Condensed', sans-serif; }
-  .search h2 {
-    display: block;
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: 0.1rem;
-    margin: 0px 0px 20px 20px; }
-  .search .search-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; }
-  .search .search-input-container .search-input {
-    width: 25rem;
-    font-size: 1.5rem;
-    border: none;
-    border-bottom: 2px solid black; }
-  .search .search-inner-container {
-    flex-wrap: wrap;
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    font-weight: 400;
-    color: #6b6c76; }
-    .search .search-inner-container .type-select {
-      border: none;
-      font-weight: bold;
-      font-family: 'Barlow Semi Condensed', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.05rem;
-      margin-right: 10px; }
-    .search .search-inner-container .order-select {
-      border: none;
-      font-weight: bold;
-      font-family: 'Barlow Semi Condensed', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.05rem;
-      margin: 0px 20px 0px 20px; }
-    .search .search-inner-container .search-button {
-      background-color: black;
-      color: white;
-      font-family: 'Barlow Semi Condensed', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.1rem;
-      border: none;
-      border-radius: 3px;
-      padding: 10px 15px; }
-    .search .search-inner-container .search-button:hover {
-      background-color: red; }
+  font-family: "Barlow Semi Condensed", sans-serif;
+}
+.search h2 {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  margin: 0px 0px 20px 20px;
+}
+.search .search-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.search .search-input-container .search-input {
+  width: 25rem;
+  font-size: 1.5rem;
+  border: none;
+  border-bottom: 2px solid black;
+}
+.search .search-inner-container {
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6b6c76;
+}
+.search .search-inner-container .type-select {
+  border: none;
+  font-weight: bold;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.05rem;
+  margin-right: 10px;
+}
+.search .search-inner-container .order-select {
+  border: none;
+  font-weight: bold;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.05rem;
+  margin: 0px 20px 0px 20px;
+}
+.search .search-inner-container .search-button {
+  background-color: black;
+  color: white;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 15px;
+}
+.search .search-inner-container .search-button:hover {
+  background-color: red;
+}
 
 .results-container {
-  margin: 70px 0px 0px 0px; }
-  .results-container h4 {
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-size: 0.9rem;
-    font-weight: bold; }
-  .results-container .results-numbers {
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: #7a7b8f; }
+  margin: 70px 0px 0px 0px;
+}
+.results-container h4 {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+.results-container .results-numbers {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #7a7b8f;
+}
+
+#container-paged {
+  justify-content: center;
+  text-align: center;
+}
+#container-paged nav {
+  display: inline-block;
+  list-style-type: none;
+}
+
+li {
+  display: inline;
+  margin: 5px;
+  font-size: 20px;
+}
 
 .header {
   width: 100%;
   height: 25rem;
   display: flex;
   flex-direction: column;
-  background-color: black; }
-  .header h1 {
-    width: 12rem;
-    font-family: 'Bangers', cursive;
-    font-size: 2.5rem;
-    color: white;
-    background-color: red;
-    text-align: center;
-    align-self: center;
-    margin: 0; }
-  .header div {
-    height: 90%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url("../../../assets/img/Marvel-Movies-the-avengers-13621669-2560-1600-e1336019698955.jpg");
-    object-fit: contain;
-    background-position: center;
-    background-size: cover; }
+  background-color: black;
+}
+.header h1 {
+  width: 12rem;
+  font-family: "Bangers", cursive;
+  font-size: 2.5rem;
+  color: white;
+  background-color: red;
+  text-align: center;
+  align-self: center;
+  margin: 0;
+}
+.header div {
+  height: 90%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url("../../../assets/img/Marvel-Movies-the-avengers-13621669-2560-1600-e1336019698955.jpg");
+  object-fit: contain;
+  background-position: center;
+  background-size: cover;
+}
 
 #container-cards {
   width: 70rem;
   height: 100%;
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+}
 
 .cards-comics {
   width: 12rem;
   height: 23rem;
   overflow: hidden;
   object-fit: contain;
-  margin: 0px 10px 0px 0px; }
-  .cards-comics .cards-comics h3:hover {
-    color: red; }
-  .cards-comics h3 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.7rem;
-    font-weight: bold;
-    letter-spacing: 0.05rem;
-    color: white;
-    padding: 15px 5px 0px 10px;
-    color: black; }
-  .cards-comics img {
-    width: 100%;
-    height: 18rem;
-    border-bottom: none;
-    box-shadow: 0px 7px 16px -7px rgba(0, 0, 0, 0.74);
-    transition: 0.1s;
-    transition-timing-function: ease; }
-  .cards-comics img:hover {
-    transform: translateY(-10px);
-    transition: 0.2s;
-    transition-timing-function: ease; }
+  margin: 0px 10px 0px 0px;
+}
+.cards-comics .cards-comics h3:hover {
+  color: red;
+}
+.cards-comics h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 0.05rem;
+  color: white;
+  padding: 15px 5px 0px 10px;
+  color: black;
+}
+.cards-comics img {
+  width: 100%;
+  height: 18rem;
+  border-bottom: none;
+  box-shadow: 0px 7px 16px -7px rgba(0, 0, 0, 0.74);
+  transition: 0.1s;
+  transition-timing-function: ease;
+}
+.cards-comics img:hover {
+  transform: translateY(-10px);
+  transition: 0.2s;
+  transition-timing-function: ease;
+}
 
 .cards-characters {
   width: 10rem;
@@ -136,10 +174,12 @@ body {
   background-color: black;
   overflow: hidden;
   object-fit: contain;
-  margin: 30px 10px 0px 0px; }
+  margin: 30px 10px 0px 0px;
+}
 
 .cards-characters:hover {
-  background-color: red; }
+  background-color: red;
+}
 
 h3 {
   font-family: Arial, Helvetica, sans-serif;
@@ -147,21 +187,27 @@ h3 {
   font-weight: bold;
   letter-spacing: 0.1rem;
   color: white;
-  padding: 15px 5px 0px 10px; }
+  padding: 15px 5px 0px 10px;
+}
 
 img {
   width: 100%;
   height: 15rem;
   transition: 0.2s;
   border-bottom: 4px solid red;
-  transition-timing-function: ease; }
+  transition-timing-function: ease;
+}
 
 img:hover {
   transform: scale(1.05);
   transition: 0.3s;
-  transition-timing-function: ease; }
+  transition-timing-function: ease;
+}
 
 body {
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+}
+
+/*# sourceMappingURL=main.css.map */
