@@ -33,7 +33,7 @@ const fetchCharacters = (offset, limit, nameStartsWith, orderBy) => {
                 let character = new Character();
                 character.id = itemCharacter.id;
                 character.name = itemCharacter.name;
-                character.thumbnailUrl = `${itemCharacter.thumbnail.path}.${itemCharacter.thumbnail.extension}`;
+                character.thumbnailUrl = `${itemCharacter.thumbnail.path}/portrait_uncanny.${itemCharacter.thumbnail.extension}`;
                 characters.push(character);
             }
             const charactersResponse = new CharactersResponse();
@@ -48,7 +48,7 @@ const fetchCharacters = (offset, limit, nameStartsWith, orderBy) => {
         });
     });
     return promise;
-}
+};
 
 // ------------------FETCH CHARACTERS BY ID-------------------------
 
@@ -85,7 +85,7 @@ const fetchComicsByCharacter = (characterId, offset, limit) => {
                 let comic = new Comic();
                 comic.id = item.id;
                 comic.title = item.title;
-                comic.thumbnailUrl = `${item.thumbnail.path}.${item.thumbnail.extension}`;
+                comic.thumbnailUrl = `${item.thumbnail.path}/portrait_uncanny.${item.thumbnail.extension}`;
                 comics.push(comic);
             }
             const comicsResponse = new ComicsResponse();
@@ -123,7 +123,7 @@ const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
                 let comic = new Comic();
                 comic.id = itemComic.id;
                 comic.title = itemComic.title;
-                comic.thumbnailUrl = `${itemComic.thumbnail.path}.${itemComic.thumbnail.extension}`;
+                comic.thumbnailUrl = `${itemComic.thumbnail.path}/portrait_uncanny.${itemComic.thumbnail.extension}`;
                 comic.modified = itemComic.modified;
                 comics.push(comic);
             }
@@ -154,7 +154,7 @@ const fetchComicById = (id) => {
             let creators = [];
             comic.id = item.id;
             comic.title = item.title;
-            comic.thumbnailUrl = `${item.thumbnail.path}.${item.thumbnail.extension}`;
+            comic.thumbnailUrl = `${item.thumbnail.path}/portrait_uncanny.${item.thumbnail.extension}`;
             comic.modified = item.modified;
             for(const creator of item.creators.items){
                 creators.push(creator.name);
@@ -181,7 +181,7 @@ const fetchCharactersByComic = (comicId, offset, limit) => {
                 let character = new Character();
                 character.id = item.id;
                 character.name = item.name;
-                character.thumbnailUrl = `${item.thumbnail.path}.${item.thumbnail.extension}`;
+                character.thumbnailUrl = `${item.thumbnail.path}/portrait_uncanny.${item.thumbnail.extension}`;
                 characters.push(character);
             }
             const charactersResponse = new CharactersResponse();
