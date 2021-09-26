@@ -24,6 +24,7 @@ const fetchCharacters = (offset, limit, nameStartsWith, orderBy) => {
     if(orderBy != undefined){
         urlApi += `&orderBy=${orderBy}`;
     }
+    console.log(urlApi);
     let promise = new Promise(function(resolve, reject) {
         fetch(urlApi)
         .then(res => res.json())
@@ -114,6 +115,7 @@ const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
     if(orderBy != undefined){
         urlApi += `&orderBy=${orderBy}`;
     }
+    console.log(titleStartsWith);
     let promise = new Promise(function(resolve, reject) {
         fetch(urlApi)
         .then(res => res.json())
