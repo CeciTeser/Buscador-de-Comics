@@ -19,11 +19,11 @@
             <h2>BÚSQUEDA</h2>
 
             <div class="search-container">
-                <div class="search-input-container">
-                    <i class="fas fa-search"></i>
-                    <input class="search-input" type="text" placeholder="Ingresá tu búsqueda" id="name-starts-with" name="namestartswith">
-                </div>
                 <form id="form-search" action="">
+                    <div class="search-input-container">
+                        <i class="fas fa-search"></i>
+                        <input class="search-input" type="text" placeholder="Ingresá tu búsqueda" id="name-starts-with" name="namestartswith">
+                    </div>
                     <div class="search-inner-container">
                         <div>
                             <label>Tipo</label>
@@ -34,8 +34,8 @@
 
                             <label>Orden</label>
                             <select class="order-select" aria-label="select order" id="order-select" name="orderselect"> 
-                                <option value="name" selected>A-Z</option>
-                                <option value="-name">Z-A</option>
+                                <option value="az" selected>A-Z</option>
+                                <option value="za">Z-A</option>
                                 <option value="modified">Más nuevos</option>
                                 <option value="-modified">Más viejos</option>
                             </select>
@@ -57,11 +57,7 @@
 
         <div id="container-paged">
             <nav>
-                <ul id="pages">
-                    <!-- <li><a href="index.html?page=1">1</a></li>
-                    <li><a href="index.html?page=2 ">2</a></li>
-                    <li><a href="index.html?page=3">3</a></li> -->
-                </ul>
+                <ul id="pages"></ul>
             </nav>
         </div>
     </main>
@@ -72,7 +68,7 @@
     <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
     <script src="./scripts/service-model.js"></script>
     <script src="./scripts/service.js"></script>
-    <script src="./scripts/home.js"></script>
+    <script src="./scripts/index.js"></script>
     
 </body>
 </html>

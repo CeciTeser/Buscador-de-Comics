@@ -1,9 +1,9 @@
 // ------------------VARIABLES-------------------------
 
-let containerCards = document.querySelector('#container-cards');
+const containerCards = document.querySelector('#container-cards');
 const limit = 20;
 const params = new URLSearchParams(window.location.search);
-const page = params.get('page') == undefined ? 1 : params.get('page');
+const page = params.get('page') == undefined ? 1 : parseInt(params.get('page'));
 const offset = (page - 1) * limit;
 
 const formSearch = document.getElementById('form-search');
@@ -85,18 +85,18 @@ const getFiltersSearch = (event) =>{
     event.preventDefault(); 
     const form = event.target
 
-    const myFilters ={
-		type: form.typeselect.value,
-		orderBy: form.orderselect.value,
-        nameStartsWith: form.namestartswith.value,
-	};
+    // const myFilters = {
+	// 	type: form.typeselect.value,
+	// 	orderBy: form.orderselect.value,
+    //     nameStartsWith: form.namestartswith.value,
+	// };
 
-    params.set("type",myFilters.type)
-    params.set("orderby", myFilters.orderBy) 
-    params.set("nameStartsWith", myFilters.nameStartsWith) 
+    params.set("type", form.typeselect.value)
+    params.set("orderby", form.orderselect.value) 
+    params.set("nameStartsWith", form.namestartswith.value) 
         
-    window.location.href=`index.html?${params}`.toString();
-
+    window.location.href=`index.html?${params}`;
+   
 };
 formSearch.addEventListener('submit', getFiltersSearch);
 
@@ -105,7 +105,7 @@ let orderBy= params.get("orderby")
 let nameStartWith = params.get("nameStartsWith")
 
 
-displayGridCard(type,undefined,undefined);
+displayGridCard(type,nameStartWith,orderBy);
 console.log(type,nameStartWith, orderBy)
 
 // ------------------PAGINATION-------------------------
