@@ -115,7 +115,6 @@ const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
     if(orderBy != undefined){
         urlApi += `&orderBy=${orderBy}`;
     }
-    console.log(titleStartsWith);
     let promise = new Promise(function(resolve, reject) {
         fetch(urlApi)
         .then(res => res.json())
@@ -145,30 +144,30 @@ const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
 
 // ------------------FETCH COMICS BY ID-------------------------
 
-const fetchComicById = (id) => {
-    const urlApi = `${getApiBaseUrl('comics/' + id)}`;
-    let promise = new Promise(function(resolve, reject) {
-        fetch(urlApi)
-        .then(res => res.json())
-        .then((json) => {
-            let item = json.data.results[0];
-            let comic = new Comic();
-            let creators = [];
-            comic.id = item.id;
-            comic.title = item.title;
-            comic.thumbnailUrl = `${item.thumbnail.path}/portrait_uncanny.${item.thumbnail.extension}`;
-            comic.modified = item.modified;
-            for(const creator of item.creators.items){
-                creators.push(creator.name);
-            }
-            comic.creators = creators;
-            resolve(comic);
-        }).catch((error) => {
-            reject('Hubo un problema con la petición Fetch:' + error.message);  
-        });
-    });
-    return promise;
-};
+// const fetchComicById = (id) => {
+//     const urlApi = `${getApiBaseUrl('comics/' + id)}`;
+//     let promise = new Promise(function(resolve, reject) {
+//         fetch(urlApi)
+//         .then(res => res.json())
+//         .then((json) => {
+//             let item = json.data.results[0];
+//             let comic = new Comic();
+//             let creators = [];
+//             comic.id = item.id;
+//             comic.title = item.title;
+//             comic.thumbnailUrl = `${item.thumbnail.path}/portrait_uncanny.${item.thumbnail.extension}`;
+//             comic.modified = item.modified;
+//             for(const creator of item.creators.items){
+//                 creators.push(creator.name);
+//             }
+//             comic.creators = creators;
+//             resolve(comic);
+//         }).catch((error) => {
+//             reject('Hubo un problema con la petición Fetch:' + error.message);  
+//         });
+//     });
+//     return promise;
+// };
 
 // ------------------FETCH CHARACTERS BY COMICS-------------------------
 
@@ -199,3 +198,4 @@ const fetchCharactersByComic = (comicId, offset, limit) => {
     });
     return promise;
 };
+

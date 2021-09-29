@@ -4,11 +4,18 @@
     nav{
         display: inline-block;
         list-style-type: none;
-    }
+    };
 
     li{
         display: inline;
         margin: 5px;
-        font-size: 20px;
-    }
-}
+
+        a{
+            color: rgb(62, 71, 87);
+            text-decoration: none;
+            font-family: 'Barlow Semi Condensed', sans-serif;
+            font-size: 18px;
+            letter-spacing: 0.03rem;
+        }
+    };
+};

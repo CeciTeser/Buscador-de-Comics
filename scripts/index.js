@@ -6,6 +6,8 @@ const params = new URLSearchParams(window.location.search);
 const page = params.get('page') == undefined ? 1 : parseInt(params.get('page'));
 const offset = (page - 1) * limit;
 const formSearch = document.getElementById('form-search');
+const orderSelect = document.getElementById('order-select');
+const typeSelect = document.getElementById('type-select');
 
 
 // ------------------DISPLAY GRID CARD-------------------------
@@ -21,7 +23,7 @@ const displayGridCard = (type, nameStartsWith, orderBy) => {
 // ------------------RESULTS CHARACTERS-------------------------
 const displayResultCharacters = (nameStartsWith, orderBy) => {
     const promise = fetchCharacters(offset, limit, nameStartsWith, orderBy);
-    const url = './detail-card.html';
+    const url = `./detail-card.html`;
     promise.then(
         (charactersResponse) => {
             let content = '';
@@ -44,13 +46,16 @@ const displayResultCharacters = (nameStartsWith, orderBy) => {
 // ------------------RESULTS COMICS-------------------------
 const displayResultComics = (nameStartsWith, orderBy) => {    
     const promise = fetchComics(offset, limit, nameStartsWith, orderBy);
-    const url = './detail-card.html';
+    const  url = `./detail-card.html`;
     promise.then(
         (comicsResponse) => {
             let content = '';
             for (const comic of comicsResponse.comics) {
-                const cell = getCellHTML('cards-comics', url, comic.thumbnailUrl, comic.title,  comic.title);
+                // params.set('id', comic.id)
+                // params.get('id')
+                const cell = getCellHTML('cards-comics', url , comic.thumbnailUrl, comic.title,  comic.title);
                 content += cell;
+                // + '&' + `${params}`
             }
             containerCards.innerHTML = content;
             const totalResults = document.getElementById('total-results');
@@ -62,11 +67,10 @@ const displayResultComics = (nameStartsWith, orderBy) => {
         }
     );
 };
-
-
 // ------------------ ASSEMBLE CARD -------------------------
-const getCellHTML = (classCard, url, thumbnailUrl, alt, title ) =>{
+const getCellHTML = (classCard, url, thumbnailUrl, alt, title) =>{
     const cellHTML = "<div class=\"" + classCard + "\"><a href=\"" + url + "\"><img src=\"" + thumbnailUrl + "\" alt=\"" + alt + "\"></a><h3>" + title + "</h3></div>";
+    
     return cellHTML;
 };
 
@@ -75,8 +79,9 @@ const getCellHTML = (classCard, url, thumbnailUrl, alt, title ) =>{
 const searchByFilters = (event) =>{    
     event.preventDefault(); 
     const form = event.target;
+
     params.set("type", form.typeselect.value);
-   
+
     let orderBy = form.orderselect.value;
     
     if(orderBy == 'az'){
@@ -96,7 +101,7 @@ const searchByFilters = (event) =>{
     params.delete("page");
         
     window.location.href=`index.html?${params}`;
-   
+
 };
 
 
@@ -178,10 +183,57 @@ const displayPaged = (total) =>{
 };
 
 
-formSearch.addEventListener('submit', getFiltersSearch);
+formSearch.addEventListener('submit', searchByFilters);
 
 let type = params.get("type")||'comics';
 let orderBy= params.get("orderby");
 let nameStartWith = params.get("namestartswith");
 displayGridCard(type, nameStartWith, orderBy);
+
+// ------------------DISPLAY SELECT ORDER BY-------------------------
+
+const searchSelectOrderBy=()=>{
+    if (formSearch.typeselect.value === 'comics') {
+        orderSelect.innerHTML = ''
+        const opAz = document.createElement('option')
+        opAz.appendChild(document.createTextNode('A-Z'))
+        opAz.setAttribute('value', 'title')
+        orderSelect.appendChild(opAz)
+
+        const opza = document.createElement('option')
+        opza.appendChild(document.createTextNode('Z-A'))
+        opza.setAttribute('value', '-title')
+        orderSelect.appendChild(opza)
+
+
+        const opNewer = document.createElement('option')
+        opNewer.appendChild(document.createTextNode('Más nuevos'))
+        opNewer.setAttribute('value', '-focDate')
+        orderSelect.appendChild(opNewer)
+
+        const opOlder = document.createElement('option')
+        opOlder.appendChild(document.createTextNode('Más viejos'))
+        opOlder.setAttribute('value', 'focDate')
+        orderSelect.appendChild(opOlder)
+    }
+
+    if (formSearch.typeselect.value === 'characters') {
+
+        orderSelect.innerHTML = ''
+
+        const opAz = document.createElement('option')
+        opAz.appendChild(document.createTextNode('A-Z'))
+        opAz.setAttribute('value', 'name')
+        orderSelect.appendChild(opAz)
+
+        const opza = document.createElement('option')
+        opza.appendChild(document.createTextNode('Z-A'))
+        opza.setAttribute('value', '-name')
+        orderSelect.appendChild(opza)
+    }
+};
+
+typeSelect.addEventListener('change', searchSelectOrderBy)
+searchSelectOrderBy();
 setCurrentSearchParameters(type, nameStartWith, orderBy);
+

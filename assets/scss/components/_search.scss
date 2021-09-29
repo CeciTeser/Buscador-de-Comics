@@ -10,68 +10,84 @@
         font-weight: bold;
         letter-spacing: 0.1rem;
         margin: 0px 0px 20px 20px;
-    }
+    };
 
     .search-container{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    
 
-    }
+        #form-search{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
 
-    .search-input-container{
-
-        .search-input{
-            width: 25rem;
-            font-size: 1.5rem;
-            border: none;
-            border-bottom: 2px solid black;
-        }
-    }
-
-    .search-inner-container{
-        flex-wrap: wrap;
-        display: flex;
-        align-items: center;
-        font-size: 1rem;
-        font-weight: 400;
-        color: rgb(107, 108, 118);
+            .search-input-container{
         
+                .search-input{
+                    width: 25rem;
+                    font-size: 1.5rem;
+                    border: none;
+                    border-bottom: 2px solid black;
+                };
+            };
 
-        .type-select{
-            border: none;
-            font-weight: bold;
-            font-family: 'Barlow Semi Condensed', sans-serif; 
-            font-size: 0.8rem;
-            letter-spacing: 0.05rem;
-            margin-right: 10px;
-        }
-        .order-select{
-            border: none;
-            font-weight: bold;
-            font-family: 'Barlow Semi Condensed', sans-serif; 
-            font-size: 0.8rem;
-            letter-spacing: 0.05rem;
-            margin: 0px 20px 0px 20px;
-        }
-        .search-button{
-            background-color:$third-color;
-            color: $primary-color;
-            font-family: 'Barlow Semi Condensed', sans-serif;
-            font-size:0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.1rem;
-            border: none;
-            border-radius: 3px;
-            padding: 10px 15px;
+            .search-inner-container{
+                flex-wrap: wrap;
+                display: flex;
+                align-items: center;
+                font-size: 1rem;
+                font-weight: 400;
+                color: rgb(107, 108, 118);
+                
 
-
-        }
-        .search-button:hover{
-            background-color: $secondary-color;
-            
-        }
-    }
+                .type-select{
+                    border: none;
+                    font-weight: bold;
+                    font-family: 'Barlow Semi Condensed', sans-serif; 
+                    font-size: 0.8rem;
+                    letter-spacing: 0.05rem;
+                    margin-right: 10px;
+                };
+                .order-select{
+                    border: none;
+                    font-weight: bold;
+                    font-family: 'Barlow Semi Condensed', sans-serif; 
+                    font-size: 0.8rem;
+                    letter-spacing: 0.05rem;
+                    margin: 0px 20px 0px 20px;
+                };
+                .search-button{
+                    background-color:$third-color;
+                    color: $primary-color;
+                    font-family: 'Barlow Semi Condensed', sans-serif;
+                    font-size:0.8rem;
+                    font-weight: 600;
+                    letter-spacing: 0.1rem;
+                    border: none;
+                    border-radius: 3px;
+                    padding: 10px 15px;
+                };
+                .search-button:hover{
+                    background-color: $secondary-color;
+                    
+                };
+                #back-button{
+                    background-color:$third-color;
+                    color: $primary-color;
+                    font-family: 'Barlow Semi Condensed', sans-serif;
+                    font-size:0.8rem;
+                    font-weight: 600;
+                    letter-spacing: 0.1rem;
+                    border: none;
+                    border-radius: 3px;
+                    padding: 10px 15px;
+                    margin-left: 5px
+                };
+                #back-button:hover{
+                    background-color: $secondary-color;
+                    
+                };
+            };
+        };
+    };
 
 };
