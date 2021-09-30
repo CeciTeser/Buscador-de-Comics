@@ -128,13 +128,11 @@ body {
 
 #container-cards {
   width: 70rem;
-  height: 100%;
   display: flex;
   flex-wrap: wrap; }
 
 #container-detail-card {
   width: 70rem;
-  height: 100%;
   display: flex;
   flex-wrap: wrap;
   margin-top: 8rem; }
@@ -210,7 +208,6 @@ body {
 
 .cardDetail {
   width: 60rem;
-  height: 100%;
   padding-left: 20px; }
   .cardDetail h3 {
     font-size: 1.7rem;

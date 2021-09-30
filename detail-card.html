@@ -19,7 +19,7 @@
             <h2>BÚSQUEDA</h2>
 
             <div class="search-container">
-                <form id="form-search" action="">
+                <form id="form-search" action="index.html">
                     <div class="search-input-container">
                         <i class="fas fa-search"></i>
                         <input class="search-input" type="text" placeholder="Ingresá tu búsqueda" name="namestartswith">
@@ -37,15 +37,32 @@
                             </select>
                         </div>
                         <button type="submit" class="search-button" id="search-button">BUSCAR</button>
-                        <button type="submit" id="back-button">VOLVER</button>
+                        <button type="button" id="back-button">VOLVER</button>
                     </div>
                 </form>
             </div>
             </div>
             
         <section>
-            <div id="container-detail-card"></div>
+            <div id="container-detail-card">
+                <div class="cardDetail">
+                    <div class="img-text-display">
+                        <img id="image-detail" src="" alt="">
+                        <div id="description-detail" class="text-display"></div>
+                    </div>
+                </div>
+            </div>
         </section>
+        <section>
+            <h3 id="title-results"><h3>
+            <p class="results-numbers"><span id="total-results"></span> RESULTADOS</p>
+            <div id="container-cards"></div>
+        </section>
+        <div id="container-paged">
+            <nav>
+                <ul id="pages"></ul>
+            </nav>
+        </div>
 
     </main>
     <footer></footer>
@@ -55,7 +72,8 @@
     <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
     <script src="./scripts/service-model.js"></script>
     <script src="./scripts/service.js"></script>
-    <script src="./scripts/index.js"></script>
+    <!-- <script src="./scripts/index.js"></script> -->
+    <script src="./scripts/utils.js"></script>
     <script src="./scripts/detail-card.js"></script>
 
     
