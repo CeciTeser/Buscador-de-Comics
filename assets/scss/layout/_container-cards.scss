@@ -1,7 +1,13 @@
-
 #container-cards{
     width: 70rem;
-    height: 100%;
     display: flex;
     flex-wrap: wrap;
 };
+
+#container-detail-card{
+    width: 70rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8rem;
+}
+

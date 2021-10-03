@@ -1,0 +1,9 @@
+.header{
+    .img-container-detail-character{
+    height: 90%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.3)), url('../../../assets/img/characters.jpg');
+    object-fit: contain; 
+    background-position: center; 
+    background-size: cover;       
+    };
+};

@@ -3,105 +3,90 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 body {
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 
 .search {
   width: 63rem;
   margin-top: 50px;
-  font-family: "Barlow Semi Condensed", sans-serif;
-}
-.search h2 {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 0.1rem;
-  margin: 0px 0px 20px 20px;
-}
-.search .search-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.search .search-input-container .search-input {
-  width: 25rem;
-  font-size: 1.5rem;
-  border: none;
-  border-bottom: 2px solid black;
-}
-.search .search-inner-container {
-  flex-wrap: wrap;
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: 400;
-  color: #6b6c76;
-}
-.search .search-inner-container .type-select {
-  border: none;
-  font-weight: bold;
-  font-family: "Barlow Semi Condensed", sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.05rem;
-  margin-right: 10px;
-}
-.search .search-inner-container .order-select {
-  border: none;
-  font-weight: bold;
-  font-family: "Barlow Semi Condensed", sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.05rem;
-  margin: 0px 20px 0px 20px;
-}
-.search .search-inner-container .search-button {
-  background-color: black;
-  color: white;
-  font-family: "Barlow Semi Condensed", sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.1rem;
-  border: none;
-  border-radius: 3px;
-  padding: 10px 15px;
-}
-.search .search-inner-container .search-button:hover {
-  background-color: red;
-}
+  font-family: 'Barlow Semi Condensed', sans-serif; }
+  .search h2 {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    margin: 0px 0px 20px 20px; }
+  .search .search-container #form-search {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap; }
+    .search .search-container #form-search .search-input-container .search-input {
+      width: 25rem;
+      font-size: 1.5rem;
+      border: none;
+      border-bottom: 2px solid black; }
+    .search .search-container #form-search .search-inner-container {
+      flex-wrap: wrap;
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #6b6c76; }
+      .search .search-container #form-search .search-inner-container .type-select {
+        border: none;
+        font-weight: bold;
+        font-family: 'Barlow Semi Condensed', sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 0.05rem;
+        margin-right: 10px; }
+      .search .search-container #form-search .search-inner-container .order-select {
+        border: none;
+        font-weight: bold;
+        font-family: 'Barlow Semi Condensed', sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 0.05rem;
+        margin: 0px 20px 0px 20px; }
+      .search .search-container #form-search .search-inner-container .search-button {
+        background-color: black;
+        color: white;
+        font-family: 'Barlow Semi Condensed', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.1rem;
+        border: none;
+        border-radius: 3px;
+        padding: 10px 15px; }
+      .search .search-container #form-search .search-inner-container .search-button:hover {
+        background-color: red; }
+      .search .search-container #form-search .search-inner-container #back-button {
+        background-color: black;
+        color: white;
+        font-family: 'Barlow Semi Condensed', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.1rem;
+        border: none;
+        border-radius: 3px;
+        padding: 10px 15px;
+        margin-left: 5px; }
+      .search .search-container #form-search .search-inner-container #back-button:hover {
+        background-color: red; }
 
 .results-container {
-  margin: 70px 0px 0px 0px;
-}
-.results-container h4 {
-  font-family: "Barlow Semi Condensed", sans-serif;
-  font-size: 0.9rem;
-  font-weight: bold;
-}
-.results-container .results-numbers {
-  font-family: "Barlow Semi Condensed", sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #7a7b8f;
-}
-
-#container-paged {
-  justify-content: center;
-  text-align: center;
-}
-#container-paged nav {
-  display: inline-block;
-  list-style-type: none;
-}
-
-li {
-  display: inline;
-  margin: 5px;
-  font-size: 20px;
-}
+  margin: 70px 0px 0px 0px; }
+  .results-container h4 {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold; }
+  .results-container .results-numbers {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #7a7b8f; }
 
 #container-paged {
   justify-content: center;
@@ -111,73 +96,74 @@ li {
     list-style-type: none; }
   #container-paged li {
     display: inline;
-    margin: 5px;
-    font-size: 20px; }
+    margin: 5px; }
+    #container-paged li a {
+      color: #3e4757;
+      text-decoration: none;
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.03rem; }
 
 .header {
   width: 100%;
   height: 25rem;
   display: flex;
   flex-direction: column;
-  background-color: black;
-}
-.header h1 {
-  width: 12rem;
-  font-family: "Bangers", cursive;
-  font-size: 2.5rem;
-  color: white;
-  background-color: red;
-  text-align: center;
-  align-self: center;
-  margin: 0;
-}
-.header div {
-  height: 90%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url("../../../assets/img/Marvel-Movies-the-avengers-13621669-2560-1600-e1336019698955.jpg");
-  object-fit: contain;
-  background-position: center;
-  background-size: cover;
-}
+  background-color: black; }
+  .header h1 {
+    width: 12rem;
+    font-family: 'Bangers', cursive;
+    font-size: 2.5rem;
+    color: white;
+    background-color: red;
+    text-align: center;
+    align-self: center;
+    margin: 0; }
+  .header .img-container {
+    height: 90%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url("../../../assets/img/Marvel-Movies-the-avengers-13621669-2560-1600-e1336019698955.jpg");
+    object-fit: contain;
+    background-position: center;
+    background-size: cover; }
 
 #container-cards {
   width: 70rem;
-  height: 100%;
+  display: flex;
+  flex-wrap: wrap; }
+
+#container-detail-card {
+  width: 70rem;
   display: flex;
   flex-wrap: wrap;
-}
+  margin-top: 8rem; }
 
 .cards-comics {
   width: 12rem;
   height: 23rem;
   overflow: hidden;
   object-fit: contain;
-  margin: 0px 10px 0px 0px;
-}
-.cards-comics .cards-comics h3:hover {
-  color: red;
-}
-.cards-comics h3 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.7rem;
-  font-weight: bold;
-  letter-spacing: 0.05rem;
-  color: white;
-  padding: 15px 5px 0px 10px;
-  color: black;
-}
-.cards-comics img {
-  width: 100%;
-  height: 18rem;
-  border-bottom: none;
-  box-shadow: 0px 7px 16px -7px rgba(0, 0, 0, 0.74);
-  transition: 0.1s;
-  transition-timing-function: ease;
-}
-.cards-comics img:hover {
-  transform: translateY(-10px);
-  transition: 0.2s;
-  transition-timing-function: ease;
-}
+  margin: 0px 10px 0px 0px; }
+  .cards-comics .cards-comics h3:hover {
+    color: red; }
+  .cards-comics h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.05rem;
+    color: white;
+    padding: 15px 5px 0px 10px;
+    color: black; }
+  .cards-comics img {
+    width: 100%;
+    height: 18rem;
+    border-bottom: none;
+    box-shadow: 0px 7px 16px -7px rgba(0, 0, 0, 0.74);
+    transition: 0.1s;
+    transition-timing-function: ease; }
+  .cards-comics img:hover {
+    transform: translateY(-10px);
+    transition: 0.2s;
+    transition-timing-function: ease; }
 
 .cards-characters {
   width: 10rem;
@@ -185,40 +171,66 @@ li {
   background-color: black;
   overflow: hidden;
   object-fit: contain;
-  margin: 30px 10px 0px 0px;
-}
+  margin: 30px 10px 0px 0px; }
+  .cards-characters .cards-characters:hover {
+    background-color: red; }
+  .cards-characters h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    color: white;
+    padding: 15px 5px 0px 10px; }
+  .cards-characters img {
+    width: 100%;
+    height: 15rem;
+    transition: 0.2s;
+    border-bottom: 4px solid red;
+    transition-timing-function: ease; }
+  .cards-characters img:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+    transition-timing-function: ease; }
 
-.cards-characters:hover {
-  background-color: red;
-}
+.header .img-container-detail-character {
+  height: 90%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url("../../../assets/img/characters.jpg");
+  object-fit: contain;
+  background-position: center;
+  background-size: cover; }
 
-h3 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.7rem;
-  font-weight: bold;
-  letter-spacing: 0.1rem;
-  color: white;
-  padding: 15px 5px 0px 10px;
-}
+.header .img-container-detail-comic {
+  height: 90%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url("../../../assets/img/comics.jpg");
+  object-fit: contain;
+  background-position: center;
+  background-size: cover; }
 
-img {
-  width: 100%;
-  height: 15rem;
-  transition: 0.2s;
-  border-bottom: 4px solid red;
-  transition-timing-function: ease;
-}
-
-img:hover {
-  transform: scale(1.05);
-  transition: 0.3s;
-  transition-timing-function: ease;
-}
+.cardDetail {
+  width: 60rem;
+  padding-left: 20px; }
+  .cardDetail h3 {
+    font-size: 1.7rem;
+    color: #3e4757;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    padding-bottom: 20px; }
+  .cardDetail .img-text-display {
+    display: flex;
+    flex-direction: row; }
+    .cardDetail .img-text-display .text-display {
+      display: flex;
+      flex-direction: column;
+      padding: 30px 0px 0px 20px; }
+      .cardDetail .img-text-display .text-display p {
+        font-size: 1rem;
+        font-family: 'Barlow Semi Condensed', sans-serif;
+        color: #3e4757; }
+        .cardDetail .img-text-display .text-display p span {
+          font-size: 1.2rem;
+          border-bottom: 1px solid black;
+          color: #3e4757; }
 
 body {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-/*# sourceMappingURL=main.css.map */
+  align-items: center; }

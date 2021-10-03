@@ -40,3 +40,4 @@ class ComicsResponse extends PagedResponse  {
         this.comics = comics;
     }
 }
+

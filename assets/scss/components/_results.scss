@@ -1,15 +1,16 @@
 .results-container{
     margin: 70px 0px 0px 0px;
 
-h4{
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-size: 0.9rem;
-    font-weight:bold;
+    h4{
+        font-family: 'Barlow Semi Condensed', sans-serif;
+        font-size: 0.9rem;
+        font-weight:bold;
+    };
+    .results-numbers{
+        font-family: 'Barlow Semi Condensed', sans-serif;
+        font-size: 0.8rem;
+        font-weight:500;
+        color: rgb(122, 123, 143);
+    };
 };
-.results-numbers{
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-size: 0.8rem;
-    font-weight:500;
-    color: rgb(122, 123, 143);
-};
-};
+

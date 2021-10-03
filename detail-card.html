@@ -10,53 +10,59 @@
 <body>
     <header class="header">
             <h1>ADA COMICS</h1>
-            <div>
+            <div class="img-container-detail-comic">
             </div>
     </header>
     <main>
         <div class="search">
 
-            <h3>BÚSQUEDA</h3>
+            <h2>BÚSQUEDA</h2>
 
             <div class="search-container">
-                <div class="search-input-container">
-                    <i class="fas fa-search"></i>
-                    <input class="search-input" type="text" placeholder="Ingresá tu búsqueda">
-                </div>
-
-                <div class="search-inner-container">
-                    <div>
-                        <label>Tipo</label>
-                        <select class="type-select"aria-label="select type" id="type-select"> 
-                            <option value="comics">COMICS</option>
-                            <option value="characters" selected>PERSONAJES</option>
-                        </select>
-
-                        <label>Orden</label>
-                        <select class="order-select" aria-label="select order"> 
-                            <option value="az" selected>A-Z</option>
-                            <option value="za">Z-A</option>
-                            <option value="new">Más nuevos</option>
-                            <option value="old">Más viejos</option>
-                        </select>
+                <form id="form-search" action="index.html">
+                    <div class="search-input-container">
+                        <i class="fas fa-search"></i>
+                        <input class="search-input" type="text" placeholder="Ingresá tu búsqueda" name="namestartswith">
                     </div>
-                    <button type="button" class="search-button" id="search-button">BUSCAR</button>
+                    <div class="search-inner-container">
+                        <div>
+                            <label>Tipo</label>
+                            <select class="type-select" aria-label="select type" id="type-select" name="typeselect"> 
+                                <option value="comics" selected>COMICS</option>
+                                <option value="characters" >PERSONAJES</option>
+                            </select>
+
+                            <label>Orden</label>
+                            <select class="order-select" aria-label="select order" id="order-select" name="orderselect"> 
+                            </select>
+                        </div>
+                        <button type="submit" class="search-button" id="search-button">BUSCAR</button>
+                        <button type="button" id="back-button">VOLVER</button>
+                    </div>
+                </form>
+            </div>
+            </div>
+            
+        <section>
+            <div id="container-detail-card">
+                <div class="cardDetail">
+                    <div class="img-text-display">
+                        <img id="image-detail" src="" alt="">
+                        <div id="description-detail" class="text-display"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <section class="results-container">
-            <h4>RESULTADOS</h4>
-            <p class="results-numbers"><span id="total-results"></span> RESULTADOS</p>
         </section>
-
-        <section class="hidden">
-            <div id="container-comics"></div>
-        </section>
-
         <section>
-            <div id="container-characters"></div>
+            <h3 id="title-results"><h3>
+            <p class="results-numbers"><span id="total-results"></span> RESULTADOS</p>
+            <div id="container-cards"></div>
         </section>
+        <div id="container-paged">
+            <nav>
+                <ul id="pages"></ul>
+            </nav>
+        </div>
 
     </main>
     <footer></footer>
@@ -66,7 +72,10 @@
     <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
     <script src="./scripts/service-model.js"></script>
     <script src="./scripts/service.js"></script>
-    <script src="./scripts/home.js"></script>
+    <!-- <script src="./scripts/index.js"></script> -->
+    <script src="./scripts/utils.js"></script>
+    <script src="./scripts/detail-card.js"></script>
+
     
 </body>
 </html>

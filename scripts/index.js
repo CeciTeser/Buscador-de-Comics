@@ -6,6 +6,8 @@ const params = new URLSearchParams(window.location.search);
 const page = params.get('page') == undefined ? 1 : parseInt(params.get('page'));
 const offset = (page - 1) * limit;
 const formSearch = document.getElementById('form-search');
+const orderSelect = document.getElementById('order-select');
+const typeSelect = document.getElementById('type-select');
 
 
 // ------------------DISPLAY GRID CARD-------------------------
@@ -17,22 +19,20 @@ const displayGridCard = (type, nameStartsWith, orderBy) => {
     }
 };
 
-
 // ------------------RESULTS CHARACTERS-------------------------
 const displayResultCharacters = (nameStartsWith, orderBy) => {
     const promise = fetchCharacters(offset, limit, nameStartsWith, orderBy);
-    const url = './detail-card.html';
     promise.then(
         (charactersResponse) => {
             let content = '';
             for (const character of charactersResponse.characters) {
-                const cell = getCellHTML('cards-characters', url, character.thumbnailUrl, character.name,  character.name);
+                const cell = getCellHTML('cards-characters',  `./detail-card.html?id=${character.id}&type=character`, character.thumbnailUrl, character.name,  character.name);
                 content += cell;
             }
             containerCards.innerHTML = content;
             const totalResults = document.getElementById('total-results');
             totalResults.innerHTML = charactersResponse.total;
-            displayPaged(charactersResponse.total)
+            displayPaged(charactersResponse.total, limit, page, 'index.html');
         }, 
         (error) => {
             // TODO: implementar mensaje de error a mostrar
@@ -40,22 +40,21 @@ const displayResultCharacters = (nameStartsWith, orderBy) => {
     );
 };
 
-
 // ------------------RESULTS COMICS-------------------------
 const displayResultComics = (nameStartsWith, orderBy) => {    
     const promise = fetchComics(offset, limit, nameStartsWith, orderBy);
-    const url = './detail-card.html';
     promise.then(
         (comicsResponse) => {
             let content = '';
             for (const comic of comicsResponse.comics) {
-                const cell = getCellHTML('cards-comics', url, comic.thumbnailUrl, comic.title,  comic.title);
+                const cell = getCellHTML('cards-comics', `./detail-card.html?id=${comic.id}&type=comic` , comic.thumbnailUrl, comic.title,  comic.title);
                 content += cell;
+                //
             }
             containerCards.innerHTML = content;
             const totalResults = document.getElementById('total-results');
             totalResults.innerHTML = comicsResponse.total;
-            displayPaged(comicsResponse.total)
+            displayPaged(comicsResponse.total, limit, page, 'index.html')
         }, 
         (error) => {
              // TODO: implementar mensaje de error a mostrar
@@ -63,32 +62,17 @@ const displayResultComics = (nameStartsWith, orderBy) => {
     );
 };
 
-
-// ------------------ ASSEMBLE CARD -------------------------
-const getCellHTML = (classCard, url, thumbnailUrl, alt, title ) =>{
-    const cellHTML = "<div class=\"" + classCard + "\"><a href=\"" + url + "\"><img src=\"" + thumbnailUrl + "\" alt=\"" + alt + "\"></a><h3>" + title + "</h3></div>";
-    return cellHTML;
-};
-
-
 // ------------------DISPLAY BY FILTER-------------------------
 const searchByFilters = (event) =>{    
     event.preventDefault(); 
     const form = event.target;
+
     params.set("type", form.typeselect.value);
-   
-    let orderBy = form.orderselect.value;
     
-    if(orderBy == 'az'){
-        orderBy = form.typeselect.value == 'comics' ? 'title' : 'name';
-    }else if(orderBy == 'za'){
-        orderBy = form.typeselect.value == 'comics' ? '-title' : '-name'; 
-    }
-    
-    params.set("orderby", orderBy);
+    params.set("orderby",  form.orderselect.value);
     
     if(form.namestartswith.value != ''){
-        params.set("namestartswith", form.namestartswith.value) 
+        params.set("namestartswith", form.namestartswith.value); 
     }else{
         params.delete("namestartswith");      
     }
@@ -96,92 +80,23 @@ const searchByFilters = (event) =>{
     params.delete("page");
         
     window.location.href=`index.html?${params}`;
-   
 };
-
 
 const setCurrentSearchParameters = (type, nameStartWith, orderBy) => {
     formSearch.namestartswith.value = nameStartWith;
-    if(orderBy == 'title' || orderBy == 'name'){
-        formSearch.orderselect.value = 'az';
-    }else if(orderBy == '-title' || orderBy == '-name'){
-        formSearch.orderselect.value = 'za';
-    }else{
-        formSearch.orderselect.value = orderBy;
-    }
-
+    formSearch.orderselect.value = orderBy;
     formSearch.typeselect.value = type;
 }
 
 
-// ------------------PAGINATION-------------------------
-const getPageLi = (page, content) => {
-    params.set("page", page);
-    const li = `<li><a href="index.html?${params}">${content}</a></li>`;
-    return li;
-}
 
-const displayPaged = (total) =>{
-    const qtyPages = Math.ceil(total / limit);
-    const pagesList = document.getElementById('pages');
-    const currentPage = page == undefined ? 1 : parseInt(page);
-    let listContent = '';
+formSearch.addEventListener('submit', searchByFilters);
+typeSelect.addEventListener('change', () => {buildOrderBySelectByType(formSearch.typeselect.value)});
 
-    if(currentPage != 1){
-        const back = getPageLi(currentPage - 1, "<");
-        listContent += back;
-        const first = getPageLi(1, "1");
-        listContent += first;
-    }
-
-    if(currentPage - 3 > 1){
-        const dots = `<li><span>...</span></li>`;
-        listContent += dots;    
-    }
-
-    if(currentPage - 2 > 1){
-        const prev_2 = getPageLi(currentPage - 2, `${currentPage - 2}`);
-        listContent += prev_2;    
-    }
-
-    if(currentPage - 1 > 1){
-        const prev_1 = getPageLi(currentPage - 1, `${currentPage - 1}`);
-        listContent += prev_1;    
-    }
-
-    const current = getPageLi(currentPage, `${currentPage}`);
-    listContent += current;
-
-    if(currentPage + 1 < qtyPages){
-        const next_1 = getPageLi(currentPage + 1, `${currentPage + 1}`);
-        listContent += next_1;
-    }
-
-    if(currentPage + 2 < qtyPages){
-        const next_2 = getPageLi(currentPage + 2, `${currentPage + 2}`);
-        listContent += next_2;
-    }
-
-    if(currentPage + 3 < qtyPages){
-        const dots = `<li><span>...</span></li>`;
-        listContent += dots; 
-    }
-
-    if(currentPage != qtyPages){
-        const last = getPageLi(qtyPages, `${qtyPages}`);
-        listContent += last;
-        const next = getPageLi(currentPage + 1, ">");
-        listContent += next;
-    }
-
-    pagesList.innerHTML = listContent;
-};
-
-
-formSearch.addEventListener('submit', getFiltersSearch);
-
-let type = params.get("type")||'comics';
-let orderBy= params.get("orderby");
+let type = params.get("type") || 'comics';
 let nameStartWith = params.get("namestartswith");
+let orderBy = params.get("orderby");
 displayGridCard(type, nameStartWith, orderBy);
+buildOrderBySelectByType(type);
+// TODO: arreglar valor default select orderby
 setCurrentSearchParameters(type, nameStartWith, orderBy);

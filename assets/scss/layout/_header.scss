@@ -14,13 +14,14 @@
         text-align:center; 
         align-self: center;
         margin: 0;
-        }
+        };
 
-        div{
+        .img-container{
         height: 90%;
         background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.3)), url('../../../assets/img/Marvel-Movies-the-avengers-13621669-2560-1600-e1336019698955.jpg');
         object-fit: contain; 
         background-position: center; 
         background-size: cover;       
-        }
+        };
 };
+

@@ -115,7 +115,6 @@ const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
     if(orderBy != undefined){
         urlApi += `&orderBy=${orderBy}`;
     }
-    console.log(titleStartsWith);
     let promise = new Promise(function(resolve, reject) {
         fetch(urlApi)
         .then(res => res.json())
@@ -126,7 +125,7 @@ const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
                 comic.id = itemComic.id;
                 comic.title = itemComic.title;
                 comic.thumbnailUrl = `${itemComic.thumbnail.path}/portrait_uncanny.${itemComic.thumbnail.extension}`;
-                comic.modified = itemComic.modified;
+                comic.modified = new Date(itemComic.modified);
                 comics.push(comic);
             }
             const comicsResponse = new ComicsResponse();
@@ -157,7 +156,7 @@ const fetchComicById = (id) => {
             comic.id = item.id;
             comic.title = item.title;
             comic.thumbnailUrl = `${item.thumbnail.path}/portrait_uncanny.${item.thumbnail.extension}`;
-            comic.modified = item.modified;
+            comic.modified = new Date(item.modified);
             for(const creator of item.creators.items){
                 creators.push(creator.name);
             }
@@ -199,3 +198,4 @@ const fetchCharactersByComic = (comicId, offset, limit) => {
     });
     return promise;
 };
+

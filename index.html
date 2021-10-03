@@ -10,7 +10,7 @@
 <body>
     <header class="header">
             <h1>ADA COMICS</h1>
-            <div>
+            <div class="img-container">
             </div>
     </header>
     <main>
@@ -34,10 +34,6 @@
 
                             <label>Orden</label>
                             <select class="order-select" aria-label="select order" id="order-select" name="orderselect"> 
-                                <option value="az" selected>A-Z</option>
-                                <option value="za">Z-A</option>
-                                <option value="modified">Más nuevos</option>
-                                <option value="-modified">Más viejos</option>
                             </select>
                         </div>
                         <button type="submit" class="search-button">BUSCAR</button>
@@ -47,7 +43,7 @@
         </div>
 
         <section class="results-container">
-            <h4>RESULTADOS</h4>
+            <h3>RESULTADOS</h3>
             <p class="results-numbers"><span id="total-results"></span> RESULTADOS</p>
         </section>
 
@@ -68,6 +64,7 @@
     <script src="https://kit.fontawesome.com/7538d07a3c.js" crossorigin="anonymous"></script>
     <script src="./scripts/service-model.js"></script>
     <script src="./scripts/service.js"></script>
+    <script src="./scripts/utils.js"></script>
     <script src="./scripts/index.js"></script>
     
 </body>
