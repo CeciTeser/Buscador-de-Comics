@@ -1,6 +1,7 @@
 @import "./base/reset.scss";
 @import "./base/typography";
 @import "./utils/variables";
+@import "./components/loading";
 @import "./components/search";
 @import "./components/results";
 @import "./components/paged";
@@ -8,9 +9,8 @@
 @import "./layout/container-cards";
 @import "./layout/comics";
 @import "./layout/characters";
-@import "./layout/detail-characters";
-@import "./layout/detail-comics.scss";
-
+@import "./layout/detail-cards.scss";
+@import "./layout/footer";
 
 
 
@@ -19,5 +19,3 @@ body{
     flex-direction: column;
     align-items: center;
 };
-
-

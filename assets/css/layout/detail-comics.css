@@ -8,19 +8,17 @@
 .cardDetail {
   width: 60rem;
   height: 100%;
-  padding-left: 20px; }
-  .cardDetail h3 {
-    font-size: 1.7rem;
-    color: #3e4757;
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    padding-bottom: 20px; }
+  padding-left: 20px;
+  background-color: blue; }
   .cardDetail .img-text-display {
     display: flex;
-    flex-direction: row; }
+    flex-direction: row;
+    background-color: brown; }
     .cardDetail .img-text-display .text-display {
       display: flex;
       flex-direction: column;
-      padding: 30px 0px 0px 20px; }
+      padding: 30px 0px 0px 20px;
+      background-color: cadetblue; }
       .cardDetail .img-text-display .text-display p {
         font-size: 1rem;
         font-family: 'Barlow Semi Condensed', sans-serif;

@@ -17,6 +17,7 @@ const displayGridCard = (type, nameStartsWith, orderBy) => {
     }else {
         displayResultComics(nameStartsWith, orderBy);
     }
+
 };
 
 // ------------------RESULTS CHARACTERS-------------------------
@@ -41,7 +42,7 @@ const displayResultCharacters = (nameStartsWith, orderBy) => {
 };
 
 // ------------------RESULTS COMICS-------------------------
-const displayResultComics = (nameStartsWith, orderBy) => {    
+const displayResultComics = (nameStartsWith, orderBy) => {   
     const promise = fetchComics(offset, limit, nameStartsWith, orderBy);
     promise.then(
         (comicsResponse) => {

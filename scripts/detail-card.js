@@ -9,6 +9,7 @@ const offset = (page - 1) * limit;
 const formSearch = document.getElementById('form-search');
 const orderSelect = document.getElementById('order-select');
 const typeSelect = document.getElementById('type-select');
+const imgHeaderDetail = document.getElementById('img-header-detail');
 
 const fetchDetail = () => {
     const type = params.get('type');
@@ -19,6 +20,7 @@ const fetchDetail = () => {
             (comic) => {
                 console.log(comic);
                 showDetailByComic(comic.title, comic.thumbnailUrl, comic.modified, comic.description, comic.creators);
+                imgHeaderDetail.classList.add('img-header-detail-comic');
             }, 
             (error) => {
                 console.log(error);
@@ -48,6 +50,7 @@ const fetchDetail = () => {
             (character) => {
                 console.log(character);
                 showDetailByCharacter(character.name, character.thumbnailUrl, character.description);
+                imgHeaderDetail.classList.add('img-header-detail-character');
             }, 
             (error) => {
                 console.log(error);
@@ -117,11 +120,7 @@ const showDetailByCharacter = (name, thumbnailUrl, description) => {
     detailCharacter.appendChild(pDescriptioDetail);
 }
 
-const goBackHome = () => {
-    window.location.href = '../index.html';
-};
 
-backButton.addEventListener('click', goBackHome);
 typeSelect.addEventListener('change',  () => {buildOrderBySelectByType(formSearch.typeselect.value)});
 
 fetchDetail();

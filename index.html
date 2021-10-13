@@ -4,16 +4,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="./assets/img/hulk.png">
     <link rel="stylesheet" href="./assets/css/main.css">
     <title>ADA Comics</title>
 </head>
 <body>
+
+    <!-- <div class="loading show">
+        <div class="spin"></div>
+    </div> -->
+
     <header class="header">
             <h1>ADA COMICS</h1>
-            <div class="img-container">
+            <div class="img-header">
             </div>
     </header>
     <main>
+
         <div class="search">
 
             <h2>BÚSQUEDA</h2>
@@ -48,7 +55,8 @@
         </section>
 
         <section>
-            <div id="container-cards"></div>
+            <div id="container-cards"> 
+            </div>
         </section>
 
         <div id="container-paged">
@@ -56,8 +64,11 @@
                 <ul id="pages"></ul>
             </nav>
         </div>
+        <div class="loader-container hidden" id="loader-container">
+            <div class="loader"></div>
+        </div>
     </main>
-    <footer></footer>
+    <footer class="footer"><img src="./assets/img/superheroe.svg" alt="superhero"></footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
