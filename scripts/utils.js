@@ -1,3 +1,63 @@
+// let Loading=(loadingDelayHidden=0)=>{
+    
+//         let loading=null;
+        
+//         const myLoadingDelayHidden=loadingDelayHidden;
+        
+//         let imgs=[];let lenImgs=0;
+//         let counterImgsLoading=0;
+        
+//         function incrementCounterImgs(){
+//             counterImgsLoading+=1;
+//             if(counterImgsLoading===lenImgs){hideLoading()}
+//         }
+            
+            
+//         function hideLoading(){
+//             if(loading!==null){
+//                 loading.classList.remove('show');
+                
+//                 setTimeout(function(){
+//                     loading.remove()
+//                 },myLoadingDelayHidden)
+//             }
+//         }
+        
+//         function init(){document.addEventListener('DOMContentLoaded',function(){
+//                 loading=document.querySelector('.loading');
+//                 imgs=Array.from(document.images);
+//                 lenImgs=imgs.length;
+//                 if(imgs.length===0){hideLoading()
+//                 }else{imgs.forEach(function(img){
+//                     img.addEventListener('load',incrementCounterImgs,false);
+//                 })
+//             }
+//         })
+//     }
+//         return {
+//             'init':init
+//             }
+// }
+
+// Loading(1000).init();
+
+let contenedor = document.getElementById('loader-container');
+
+const hideLoader = () => {
+    contenedor.classList.add('hidden')
+    console.log('hide')
+}
+
+const showLoader = () => {
+    contenedor.classList.remove('hidden')
+    console.log('show')
+}
+
+// window.onload = function(){
+//     let contenedor = document.getElementById('contenedor-carga');
+//     contenedor.style.visibility = 'hidden';
+//     contenedor.style.opacity='0';
+// }
 // ------------------ ASSEMBLE CARD -------------------------
 const getCellHTML = (classCard, url, thumbnailUrl, alt, title) =>{
     const cellHTML = "<div class=\"" + classCard + "\"><a href=\"" + url + "\"><img src=\"" + thumbnailUrl + "\" alt=\"" + alt + "\"></a><h3>" + title + "</h3></div>";
@@ -10,12 +70,10 @@ const getCellHTML = (classCard, url, thumbnailUrl, alt, title) =>{
 const getPageLi = (page, content, baseUrl) => {
     params.set("page", page);
     const li = `<li><a href="${baseUrl}?${params}">${content}</a></li>`;
-    console.log(li);
     return li;
 }
 
 const displayPaged = (total, limit, page, baseUrl) =>{
-    console.log(baseUrl);
     const qtyPages = Math.ceil(total / limit);
     const pagesList = document.getElementById('pages');
     const currentPage = page == undefined ? 1 : parseInt(page);
@@ -112,3 +170,5 @@ const buildOrderBySelectByType = (type)=>{
         orderSelect.appendChild(opZa);
     }
 };
+
+
