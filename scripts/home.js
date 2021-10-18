@@ -1,15 +1,15 @@
-// ------------------VARIABLES-------------------------
+// // ------------------VARIABLES-------------------------
 
-const containerCards = document.querySelector('#container-cards');
-const limit = 20;
-const params = new URLSearchParams(window.location.search);
-const page = params.get('page') == undefined ? 1 : parseInt(params.get('page'));
-const offset = (page - 1) * limit;
+// const containerCards = document.querySelector('#container-cards');
+// const limit = 20;
+// const params = new URLSearchParams(window.location.search);
+// const page = params.get('page') == undefined ? 1 : parseInt(params.get('page'));
+// const offset = (page - 1) * limit;
 
-const formSearch = document.getElementById('form-search');
+// const formSearch = document.getElementById('form-search');
 
 
-// ------------------DISPLAY GRID CARD-------------------------
+// // ------------------DISPLAY GRID CARD-------------------------
 
 const displayGridCard = (type, nameStartsWith, orderBy) => {
     if(type === 'characters'){
@@ -19,7 +19,8 @@ const displayGridCard = (type, nameStartsWith, orderBy) => {
     }
 };
 
-// ------------------RESULTS CHARACTERS-------------------------
+// // ------------------RESULTS CHARACTERS-------------------------
+
 
 const displayResultCharacters = (nameStartsWith, orderBy) => {
     const promise = fetchCharacters(offset, limit, nameStartsWith, orderBy);
@@ -45,7 +46,6 @@ const displayResultCharacters = (nameStartsWith, orderBy) => {
 // ------------------RESULTS COMICS-------------------------
 
 const displayResultComics = (nameStartsWith, orderBy) => {
-    
     const promise = fetchComics(offset, limit, nameStartsWith, orderBy);
     const url = './detail-card.html';
     promise.then(
@@ -73,10 +73,10 @@ const getCellHTML = (classCard, url, thumbnailUrl, alt, title ) =>{
     return cellHTML;
 };
 
+
 // ------------------DISPLAY BY FILTER-------------------------
 
 const getFiltersSearch = (event) =>{
-    
     event.preventDefault(); 
     const form = event.target
     params.set("type", form.typeselect.value)
@@ -86,9 +86,8 @@ const getFiltersSearch = (event) =>{
     }else{
         params.delete("namestartswith");      
     }
-        
-    window.location.href=`index.html?${params}`;
    
+    window.location.href=`index.html?${params}`;
 };
 formSearch.addEventListener('submit', getFiltersSearch);
 

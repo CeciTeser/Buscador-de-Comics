@@ -1,3 +1,15 @@
+let contenedor = document.getElementById('loader-container');
+
+const hideLoader = () => {
+    contenedor.classList.add('hidden')
+    console.log('hide')
+}
+
+const showLoader = () => {
+    contenedor.classList.remove('hidden')
+    console.log('show')
+}
+
 // ------------------ ASSEMBLE CARD -------------------------
 const getCellHTML = (classCard, url, thumbnailUrl, alt, title) =>{
     const cellHTML = "<div class=\"" + classCard + "\"><a href=\"" + url + "\"><img src=\"" + thumbnailUrl + "\" alt=\"" + alt + "\"></a><h3>" + title + "</h3></div>";

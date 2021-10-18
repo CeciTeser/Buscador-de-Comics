@@ -17,6 +17,7 @@ const getApiBaseUrl = (service) => {
 // ------------------FETCH CHARACTERS-------------------------
 
 const fetchCharacters = (offset, limit, nameStartsWith, orderBy) => {
+    showLoader()
     let urlApi = `${getApiBaseUrl('characters')}&offset=${offset}&limit=${limit}`;
     if(nameStartsWith != undefined && nameStartsWith != ''){
         urlApi += `&nameStartsWith=${nameStartsWith}`;
@@ -43,6 +44,7 @@ const fetchCharacters = (offset, limit, nameStartsWith, orderBy) => {
             charactersResponse.limit = json.data.limit;
             charactersResponse.total = json.data.total;
             resolve(charactersResponse);
+            hideLoader()
 
         }).catch((error) => {
             reject('Hubo un problema con la petición Fetch:' + error.message);
@@ -54,6 +56,7 @@ const fetchCharacters = (offset, limit, nameStartsWith, orderBy) => {
 // ------------------FETCH CHARACTERS BY ID-------------------------
 
 const fetchCharacterById = (id) => {
+    showLoader()
     const urlApi = `${getApiBaseUrl('characters/' + id)}`;
     let promise = new Promise(function(resolve, reject) {
         fetch(urlApi)
@@ -66,6 +69,7 @@ const fetchCharacterById = (id) => {
             character.description = item.description;
             character.thumbnailUrl = `${item.thumbnail.path}.${item.thumbnail.extension}`;
             resolve(character);
+            hideLoader()
         }).catch((error) => {
             reject('Hubo un problema con la petición Fetch:' + error.message);
         });
@@ -76,6 +80,7 @@ const fetchCharacterById = (id) => {
 // ------------------FETCH COMICS BY CHARACTERS-------------------------
 
 const fetchComicsByCharacter = (characterId, offset, limit) => {
+    showLoader()
     const urlApi = `${getApiBaseUrl(`characters/${characterId}/comics`)}&offset=${offset}&limit=${limit}`;
     let promise = new Promise(function(resolve, reject) {
         fetch(urlApi)
@@ -95,6 +100,7 @@ const fetchComicsByCharacter = (characterId, offset, limit) => {
             comicsResponse.limit = json.data.limit;
             comicsResponse.total = json.data.total;
             resolve(comicsResponse);
+            hideLoader()
 
         }).catch((error) => {
             reject('Hubo un problema con la petición Fetch:' + error.message);
@@ -108,6 +114,7 @@ const fetchComicsByCharacter = (characterId, offset, limit) => {
 // ------------------FETCH COMICS-------------------------
 
 const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
+    showLoader()
     let urlApi = `${getApiBaseUrl('comics')}&offset=${offset}&limit=${limit}`;
     if(titleStartsWith != undefined && titleStartsWith != ''){
         urlApi += `&titleStartsWith=${titleStartsWith}`;
@@ -134,6 +141,7 @@ const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
             comicsResponse.limit = json.data.limit;
             comicsResponse.total = json.data.total;
             resolve(comicsResponse);
+            hideLoader()
 
         }).catch((error) => {
             reject('Hubo un problema con la petición Fetch:' + error.message);
@@ -145,6 +153,7 @@ const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
 // ------------------FETCH COMICS BY ID-------------------------
 
 const fetchComicById = (id) => {
+    showLoader()
     const urlApi = `${getApiBaseUrl('comics/' + id)}`;
     let promise = new Promise(function(resolve, reject) {
         fetch(urlApi)
@@ -162,6 +171,7 @@ const fetchComicById = (id) => {
             }
             comic.creators = creators;
             resolve(comic);
+            hideLoader()
         }).catch((error) => {
             reject('Hubo un problema con la petición Fetch:' + error.message);  
         });
@@ -172,6 +182,7 @@ const fetchComicById = (id) => {
 // ------------------FETCH CHARACTERS BY COMICS-------------------------
 
 const fetchCharactersByComic = (comicId, offset, limit) => {
+    showLoader()
     const urlApi = `${getApiBaseUrl(`comics/${comicId}/characters`)}&offset=${offset}&limit=${limit}`;
     let promise = new Promise(function(resolve, reject) {
         fetch(urlApi)
@@ -191,6 +202,7 @@ const fetchCharactersByComic = (comicId, offset, limit) => {
             charactersResponse.limit = json.data.limit;
             charactersResponse.total = json.data.total;
             resolve(charactersResponse);
+            hideLoader()
 
         }).catch((error) => {
             reject('Hubo un problema con la petición Fetch:' + error.message);

@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="shortcut icon" href="./assets/img/iron.png">
     <title>ADA Comics</title>
 </head>
 <body>
     <header class="header">
             <h1>ADA COMICS</h1>
-            <div class="img-container-detail-comic">
+            <div id="img-header-detail">
             </div>
     </header>
     <main>
@@ -39,18 +40,17 @@
                             </select>
                         </div>
                         <button type="submit" class="search-button" id="search-button">BUSCAR</button>
-                        <button type="button" id="back-button">VOLVER</button>
                     </div>
                 </form>
             </div>
         </div>
-        
         <section>
             <div id="container-detail-card">
                 <div class="cardDetail">
                     <div class="img-text-display">
                         <img id="image-detail" src="" alt="">
                         <div id="description-detail" class="text-display"></div>
+                        <a href="javascript:history.back()" class="back-btn">Volver</a>
                     </div>
                 </div>
             </div>
@@ -60,14 +60,19 @@
             <p class="results-numbers"><span id="total-results"></span> RESULTADOS</p>
             <div id="container-cards"></div>
         </section>
+
         <div id="container-paged">
             <nav>
                 <ul id="pages"></ul>
             </nav>
         </div>
+        
+        <div class="loader-container hidden" id="loader-container">
+            <div class="loader"></div>
+        </div>
 
     </main>
-    <footer></footer>
+    <footer class="footer"><img src="./assets/img/superheroe.svg" alt="superhero"></footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>

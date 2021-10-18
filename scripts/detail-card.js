@@ -11,6 +11,7 @@ const offset = (page - 1) * limit;
 const formSearch = document.getElementById('form-search');
 const orderSelect = document.getElementById('order-select');
 const typeSelect = document.getElementById('type-select');
+const imgHeaderDetail = document.getElementById('img-header-detail');
 
 const fetchDetail = () => {
     const type = params.get('type');
@@ -35,14 +36,13 @@ const fetchDetail = () => {
                         showErrorMessage();
                     }
                 );
+                imgHeaderDetail.classList.add('img-header-detail-comic');
             }, 
             (error) => {
                 showErrorMessage();
             } 
         );
-
-        
-        
+      
     }else if(type == 'character'){
         fetchCharacterById(id).then(
             (character) => {
@@ -62,6 +62,7 @@ const fetchDetail = () => {
                         showErrorMessage();
                     }
                 );
+                imgHeaderDetail.classList.add('img-header-detail-character');
             }, 
             (error) => {
                 showErrorMessage();
@@ -114,10 +115,6 @@ const showDetailByCharacter = (name, thumbnailUrl, description) => {
     detailCharacter.appendChild(titleDetail);
     detailCharacter.appendChild(pDescriptioDetail);
 }
-
-const goBackHome = () => {
-    window.location.href = '../index.html';
-};
 
 const showErrorMessage = () => {
     error.innerHTML = messageError('Algo salió mal, por favor intenta más tarde.');
