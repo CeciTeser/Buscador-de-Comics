@@ -19,13 +19,13 @@ const getApiBaseUrl = (service) => {
 const fetchCharacters = (offset, limit, nameStartsWith, orderBy) => {
     showLoader()
     let urlApi = `${getApiBaseUrl('characters')}&offset=${offset}&limit=${limit}`;
-    if(nameStartsWith != undefined){
+    if(nameStartsWith != undefined && nameStartsWith != ''){
         urlApi += `&nameStartsWith=${nameStartsWith}`;
     }
     if(orderBy != undefined){
         urlApi += `&orderBy=${orderBy}`;
     }
-    console.log(urlApi);
+
     let promise = new Promise(function(resolve, reject) {
         fetch(urlApi)
         .then(res => res.json())
@@ -116,7 +116,7 @@ const fetchComicsByCharacter = (characterId, offset, limit) => {
 const fetchComics = (offset, limit, titleStartsWith, orderBy) => {
     showLoader()
     let urlApi = `${getApiBaseUrl('comics')}&offset=${offset}&limit=${limit}`;
-    if(titleStartsWith != undefined){
+    if(titleStartsWith != undefined && titleStartsWith != ''){
         urlApi += `&titleStartsWith=${titleStartsWith}`;
     }
     if(orderBy != undefined){

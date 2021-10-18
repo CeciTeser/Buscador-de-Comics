@@ -1,46 +1,3 @@
-// let Loading=(loadingDelayHidden=0)=>{
-    
-//         let loading=null;
-        
-//         const myLoadingDelayHidden=loadingDelayHidden;
-        
-//         let imgs=[];let lenImgs=0;
-//         let counterImgsLoading=0;
-        
-//         function incrementCounterImgs(){
-//             counterImgsLoading+=1;
-//             if(counterImgsLoading===lenImgs){hideLoading()}
-//         }
-            
-            
-//         function hideLoading(){
-//             if(loading!==null){
-//                 loading.classList.remove('show');
-                
-//                 setTimeout(function(){
-//                     loading.remove()
-//                 },myLoadingDelayHidden)
-//             }
-//         }
-        
-//         function init(){document.addEventListener('DOMContentLoaded',function(){
-//                 loading=document.querySelector('.loading');
-//                 imgs=Array.from(document.images);
-//                 lenImgs=imgs.length;
-//                 if(imgs.length===0){hideLoading()
-//                 }else{imgs.forEach(function(img){
-//                     img.addEventListener('load',incrementCounterImgs,false);
-//                 })
-//             }
-//         })
-//     }
-//         return {
-//             'init':init
-//             }
-// }
-
-// Loading(1000).init();
-
 let contenedor = document.getElementById('loader-container');
 
 const hideLoader = () => {
@@ -53,11 +10,6 @@ const showLoader = () => {
     console.log('show')
 }
 
-// window.onload = function(){
-//     let contenedor = document.getElementById('contenedor-carga');
-//     contenedor.style.visibility = 'hidden';
-//     contenedor.style.opacity='0';
-// }
 // ------------------ ASSEMBLE CARD -------------------------
 const getCellHTML = (classCard, url, thumbnailUrl, alt, title) =>{
     const cellHTML = "<div class=\"" + classCard + "\"><a href=\"" + url + "\"><img src=\"" + thumbnailUrl + "\" alt=\"" + alt + "\"></a><h3>" + title + "</h3></div>";
@@ -66,7 +18,6 @@ const getCellHTML = (classCard, url, thumbnailUrl, alt, title) =>{
 };
 
 // ------------------PAGINATION-------------------------
-// TODO: arreglar params y baseUrl
 const getPageLi = (page, content, baseUrl) => {
     params.set("page", page);
     const li = `<li><a href="${baseUrl}?${params}">${content}</a></li>`;
@@ -78,6 +29,11 @@ const displayPaged = (total, limit, page, baseUrl) =>{
     const pagesList = document.getElementById('pages');
     const currentPage = page == undefined ? 1 : parseInt(page);
     let listContent = '';
+
+    if(qtyPages === 0){
+        pagesList.innerHTML = '';
+        return;
+    }
 
     if(currentPage != 1){
         const back = getPageLi(currentPage - 1, "<", baseUrl);
@@ -171,4 +127,12 @@ const buildOrderBySelectByType = (type)=>{
     }
 };
 
-
+const messageError = (message) =>{
+    const alertHtml = `
+    <div class="alert alert-dark" role="alert">
+        <h4 class="alert-heading">Ups!</h4>
+        <p>${message}</p>
+    </div>
+    `;
+    return alertHtml;
+}

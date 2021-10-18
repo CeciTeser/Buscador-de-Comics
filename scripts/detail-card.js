@@ -1,4 +1,6 @@
 const backButton = document.getElementById('back-button');
+const detail = document.getElementById('description-detail');
+const error = document.getElementById('error');
 const containerCards = document.querySelector('#container-cards');
 const titleResults = document.getElementById('title-results');
 const totalResults = document.getElementById('total-results');
@@ -18,61 +20,55 @@ const fetchDetail = () => {
     if(type == 'comic'){
         fetchComicById(id).then(
             (comic) => {
-                console.log(comic);
                 showDetailByComic(comic.title, comic.thumbnailUrl, comic.modified, comic.description, comic.creators);
+                fetchCharactersByComic(id, offset, limit).then(
+                    (charactersResponse) => {
+                        for (const character of charactersResponse.characters) {
+                            const cell = getCellHTML('cards-characters', `./detail-card.html?id=${character.id}&type=character`, character.thumbnailUrl, character.name,  character.name);
+                            content += cell;
+                        }
+                        titleResults.innerHTML = 'Personajes';
+                        totalResults.innerHTML = charactersResponse.total;
+                        containerCards.innerHTML = content;
+                        displayPaged(charactersResponse.total, limit, page, 'detail-card.html');
+                    }, 
+                    (error) => {
+                        showErrorMessage();
+                    }
+                );
                 imgHeaderDetail.classList.add('img-header-detail-comic');
             }, 
             (error) => {
-                console.log(error);
-                // TODO: implementar mensaje de error a mostrar
-            }
+                showErrorMessage();
+            } 
         );
-        fetchCharactersByComic(id, offset, limit).then(
-            (charactersResponse) => {
-                console.log(charactersResponse);
-                for (const character of charactersResponse.characters) {
-                    const cell = getCellHTML('cards-characters', `./detail-card.html?id=${character.id}&type=character`, character.thumbnailUrl, character.name,  character.name);
-                    content += cell;
-                }
-                titleResults.innerHTML = 'Personajes';
-                totalResults.innerHTML = charactersResponse.total;
-                containerCards.innerHTML = content;
-                displayPaged(charactersResponse.total, limit, page, 'detail-card.html');
-            }, 
-            (error) => {
-                console.log(error);
-                // TODO: implementar mensaje de error a mostrar
-            }
-        );
-        
+      
     }else if(type == 'character'){
         fetchCharacterById(id).then(
             (character) => {
-                console.log(character);
                 showDetailByCharacter(character.name, character.thumbnailUrl, character.description);
+                fetchComicsByCharacter(id, offset, limit).then(
+                    (comicsResponse) => {
+                        for(const comic of comicsResponse.comics){
+                            const cell = getCellHTML('cards-comics', `./detail-card.html?id=${comic.id}&type=comic`, comic.thumbnailUrl, comic.title,  comic.title);
+                            content += cell;
+                        }
+                        titleResults.innerHTML = 'Comics';
+                        totalResults.innerHTML = comicsResponse.total;
+                        containerCards.innerHTML = content;
+                        displayPaged(comicsResponse.total, limit, page, 'detail-card.html');
+                    },
+                    (error) => {
+                        showErrorMessage();
+                    }
+                );
                 imgHeaderDetail.classList.add('img-header-detail-character');
             }, 
             (error) => {
-                console.log(error);
-                // TODO: implementar mensaje de error a mostrar
+                showErrorMessage();
             }
         );
-        fetchComicsByCharacter(id, offset, limit).then(
-            (comicsResponse) => {
-                for(const comic of comicsResponse.comics){
-                    const cell = getCellHTML('cards-comics', `./detail-card.html?id=${comic.id}&type=character`, comic.thumbnailUrl, comic.title,  comic.title);
-                    content += cell;
-                }
-                titleResults.innerHTML = 'Comics';
-                totalResults.innerHTML = comicsResponse.total;
-                containerCards.innerHTML = content;
-                displayPaged(comicsResponse.total, limit, page, 'detail-card.html');
-            },
-            (error) => {
-                console.log(error);
-                // TODO: implementar mensaje de error a mostrar
-            }
-        );
+        
     }
 }
 
@@ -120,7 +116,17 @@ const showDetailByCharacter = (name, thumbnailUrl, description) => {
     detailCharacter.appendChild(pDescriptioDetail);
 }
 
+const showErrorMessage = () => {
+    error.innerHTML = messageError('Algo salió mal, por favor intenta más tarde.');
+    detail.innerHTML = '';
+    containerCards.innerHTML = '';
+    imageDetail.src = '';
+    imageDetail.alt = '';
+    document.querySelector('.results-numbers').innerHTML = '';
+    
+}
 
+backButton.addEventListener('click', goBackHome);
 typeSelect.addEventListener('change',  () => {buildOrderBySelectByType(formSearch.typeselect.value)});
 
 fetchDetail();
