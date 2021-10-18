@@ -102,6 +102,9 @@ typeSelect.addEventListener('change', () => {buildOrderBySelectByType(formSearch
 let type = params.get("type") || 'comics';
 let nameStartWith = params.get("namestartswith");
 let orderBy = params.get("orderby");
-displayGridCard(type, nameStartWith, orderBy);
-buildOrderBySelectByType(type);
+
+
 setCurrentSearchParameters(type, nameStartWith, orderBy);
+buildOrderBySelectByType(type);
+displayGridCard(type, nameStartWith, orderBy);
+

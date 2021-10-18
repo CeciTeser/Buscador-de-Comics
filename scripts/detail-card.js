@@ -1,4 +1,3 @@
-const backButton = document.getElementById('back-button');
 const detail = document.getElementById('description-detail');
 const error = document.getElementById('error');
 const containerCards = document.querySelector('#container-cards');
@@ -126,7 +125,7 @@ const showErrorMessage = () => {
     
 }
 
-backButton.addEventListener('click', goBackHome);
+
 typeSelect.addEventListener('change',  () => {buildOrderBySelectByType(formSearch.typeselect.value)});
 
 fetchDetail();
