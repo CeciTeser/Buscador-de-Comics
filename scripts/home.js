@@ -12,17 +12,11 @@ const formSearch = document.getElementById('form-search');
 // ------------------DISPLAY GRID CARD-------------------------
 
 const displayGridCard = (type, nameStartsWith, orderBy) => {
-    
-
     if(type === 'characters'){
         displayResultCharacters(nameStartsWith, orderBy);
-        
-    
     }else {
         displayResultComics(nameStartsWith, orderBy);
-
     }
-
 };
 
 // ------------------RESULTS CHARACTERS-------------------------
@@ -43,17 +37,15 @@ const displayResultCharacters = (nameStartsWith, orderBy) => {
             displayPaged(charactersResponse.total)
         }, 
         (error) => {
-
+            showErrorMessage();
         }
     );
 };
-
 
 // ------------------RESULTS COMICS-------------------------
 
 const displayResultComics = (nameStartsWith, orderBy) => {
     
-    console.log(nameStartsWith);
     const promise = fetchComics(offset, limit, nameStartsWith, orderBy);
     const url = './detail-card.html';
     promise.then(
@@ -69,10 +61,11 @@ const displayResultComics = (nameStartsWith, orderBy) => {
             displayPaged(comicsResponse.total)
         }, 
         (error) => {
-
+            showErrorMessage();
         }
     );
 };
+
 // ------------------ ASSEMBLE CARD -------------------------
 
 const getCellHTML = (classCard, url, thumbnailUrl, alt, title ) =>{
@@ -88,8 +81,6 @@ const getFiltersSearch = (event) =>{
     const form = event.target
     params.set("type", form.typeselect.value)
     params.set("orderby", form.orderselect.value) 
-    console.log('form.namestartswith.value');
-    console.log(form.namestartswith.value);
     if(form.namestartswith.value != ''){
         params.set("namestartswith", form.namestartswith.value) 
     }else{
@@ -105,9 +96,7 @@ let type = params.get("type")||'comics'
 let orderBy= params.get("orderby")
 let nameStartWith = params.get("namestartswith")
 
-
 displayGridCard(type,nameStartWith,orderBy);
-console.log(type,nameStartWith, orderBy)
 
 // ------------------PAGINATION-------------------------
 

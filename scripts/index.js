@@ -1,6 +1,7 @@
 // ------------------VARIABLES-------------------------
 
 const containerCards = document.querySelector('#container-cards');
+const error = document.getElementById('error');
 const limit = 20;
 const params = new URLSearchParams(window.location.search);
 const page = params.get('page') == undefined ? 1 : parseInt(params.get('page'));
@@ -35,7 +36,7 @@ const displayResultCharacters = (nameStartsWith, orderBy) => {
             displayPaged(charactersResponse.total, limit, page, 'index.html');
         }, 
         (error) => {
-            // TODO: implementar mensaje de error a mostrar
+            showErrorMessage();
         }
     );
 };
@@ -57,7 +58,7 @@ const displayResultComics = (nameStartsWith, orderBy) => {
             displayPaged(comicsResponse.total, limit, page, 'index.html')
         }, 
         (error) => {
-             // TODO: implementar mensaje de error a mostrar
+            showErrorMessage();
         }
     );
 };
@@ -88,7 +89,11 @@ const setCurrentSearchParameters = (type, nameStartWith, orderBy) => {
     formSearch.typeselect.value = type;
 }
 
-
+const showErrorMessage = () => {
+    error.innerHTML = messageError('Algo salió mal, por favor intenta más tarde.');
+    containerCards.innerHTML = '';
+    document.querySelector('.results-numbers').innerHTML = '';
+}
 
 formSearch.addEventListener('submit', searchByFilters);
 typeSelect.addEventListener('change', () => {buildOrderBySelectByType(formSearch.typeselect.value)});
@@ -98,5 +103,4 @@ let nameStartWith = params.get("namestartswith");
 let orderBy = params.get("orderby");
 displayGridCard(type, nameStartWith, orderBy);
 buildOrderBySelectByType(type);
-// TODO: arreglar valor default select orderby
 setCurrentSearchParameters(type, nameStartWith, orderBy);

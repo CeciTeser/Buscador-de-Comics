@@ -6,20 +6,22 @@ const getCellHTML = (classCard, url, thumbnailUrl, alt, title) =>{
 };
 
 // ------------------PAGINATION-------------------------
-// TODO: arreglar params y baseUrl
 const getPageLi = (page, content, baseUrl) => {
     params.set("page", page);
     const li = `<li><a href="${baseUrl}?${params}">${content}</a></li>`;
-    console.log(li);
     return li;
 }
 
 const displayPaged = (total, limit, page, baseUrl) =>{
-    console.log(baseUrl);
     const qtyPages = Math.ceil(total / limit);
     const pagesList = document.getElementById('pages');
     const currentPage = page == undefined ? 1 : parseInt(page);
     let listContent = '';
+
+    if(qtyPages === 0){
+        pagesList.innerHTML = '';
+        return;
+    }
 
     if(currentPage != 1){
         const back = getPageLi(currentPage - 1, "<", baseUrl);
@@ -112,3 +114,13 @@ const buildOrderBySelectByType = (type)=>{
         orderSelect.appendChild(opZa);
     }
 };
+
+const messageError = (message) =>{
+    const alertHtml = `
+    <div class="alert alert-dark" role="alert">
+        <h4 class="alert-heading">Ups!</h4>
+        <p>${message}</p>
+    </div>
+    `;
+    return alertHtml;
+}
