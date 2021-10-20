@@ -1,3 +1,5 @@
+// ------------------VARIABLES-------------------------
+
 const detail = document.getElementById('description-detail');
 const error = document.getElementById('error');
 const containerCards = document.querySelector('#container-cards');
@@ -11,6 +13,9 @@ const formSearch = document.getElementById('form-search');
 const orderSelect = document.getElementById('order-select');
 const typeSelect = document.getElementById('type-select');
 const imgHeaderDetail = document.getElementById('img-header-detail');
+const imageDetail = document.getElementById('image-detail');
+
+// ------------------FETCH DETAIL-------------------------
 
 const fetchDetail = () => {
     const type = params.get('type');
@@ -31,17 +36,17 @@ const fetchDetail = () => {
                         containerCards.innerHTML = content;
                         displayPaged(charactersResponse.total, limit, page, 'detail-card.html');
                     }, 
-                    (error) => {
+                    (error:string) => {
                         showErrorMessage();
                     }
                 );
                 imgHeaderDetail.classList.add('img-header-detail-comic');
             }, 
-            (error) => {
+            (error:string) => {
                 showErrorMessage();
             } 
         );
-      
+
     }else if(type == 'character'){
         fetchCharacterById(id).then(
             (character) => {
@@ -57,13 +62,13 @@ const fetchDetail = () => {
                         containerCards.innerHTML = content;
                         displayPaged(comicsResponse.total, limit, page, 'detail-card.html');
                     },
-                    (error) => {
+                    (error:string) => {
                         showErrorMessage();
                     }
                 );
                 imgHeaderDetail.classList.add('img-header-detail-character');
             }, 
-            (error) => {
+            (error:string) => {
                 showErrorMessage();
             }
         );
@@ -71,9 +76,9 @@ const fetchDetail = () => {
     }
 }
 
-const imageDetail = document.getElementById('image-detail');
+// ------------------SHOW DETAIL BY COMIC-------------------------
 
-const showDetailByComic = (title, thumbnailUrl, modified, description, creators) => {
+const showDetailByComic = (title:string, thumbnailUrl:string, modified:Date, description:string, creators:[string]) => {
     const detailComic = document.getElementById('description-detail');
     const titleDetail = document.createElement('h2');
     const hPublishedDetail = document.createElement('h3');
@@ -100,9 +105,11 @@ const showDetailByComic = (title, thumbnailUrl, modified, description, creators)
     detailComic.appendChild(pWritersDetail);
     detailComic.appendChild(hDescriptionDetail);
     detailComic.appendChild(pDescriptionDetail);
-}
+};
 
-const showDetailByCharacter = (name, thumbnailUrl, description) => {
+// ------------------SHOW DETAIL BY CHARACTER-------------------------
+
+const showDetailByCharacter = (name:string, thumbnailUrl:string, description:string) => {
     const detailCharacter = document.getElementById('description-detail');
     const titleDetail = document.createElement('h2');
     const pDescriptioDetail = document.createElement('p');
@@ -123,8 +130,7 @@ const showErrorMessage = () => {
     imageDetail.alt = '';
     document.querySelector('.results-numbers').innerHTML = '';
     
-}
-
+};
 
 typeSelect.addEventListener('change',  () => {buildOrderBySelectByType(formSearch.typeselect.value)});
 

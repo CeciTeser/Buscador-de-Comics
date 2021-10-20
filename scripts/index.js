@@ -1,110 +1,89 @@
 // ------------------VARIABLES-------------------------
-
-const containerCards = document.querySelector('#container-cards');
-const error = document.getElementById('error');
-const limit = 20;
-const params = new URLSearchParams(window.location.search);
-const page = params.get('page') == undefined ? 1 : parseInt(params.get('page'));
-const offset = (page - 1) * limit;
-const formSearch = document.getElementById('form-search');
-const orderSelect = document.getElementById('order-select');
-const typeSelect = document.getElementById('type-select');
-
-
+var containerCards = document.querySelector('#container-cards');
+var error = document.getElementById('error');
+var limit = 20;
+var params = new URLSearchParams(window.location.search);
+var page = params.get('page') == undefined ? 1 : parseInt(params.get('page'));
+var offset = (page - 1) * limit;
+var formSearch = document.getElementById('form-search');
+var orderSelect = document.getElementById('order-select');
+var typeSelect = document.getElementById('type-select');
 // ------------------DISPLAY GRID CARD-------------------------
-const displayGridCard = (type, nameStartsWith, orderBy) => {
-    if(type === 'characters'){
+var displayGridCard = function (type, nameStartsWith, orderBy) {
+    if (type === 'characters') {
         displayResultCharacters(nameStartsWith, orderBy);
-    }else {
+    }
+    else {
         displayResultComics(nameStartsWith, orderBy);
     }
-
 };
-
 // ------------------RESULTS CHARACTERS-------------------------
-const displayResultCharacters = (nameStartsWith, orderBy) => {
-    const promise = fetchCharacters(offset, limit, nameStartsWith, orderBy);
-    promise.then(
-        (charactersResponse) => {
-            let content = '';
-            for (const character of charactersResponse.characters) {
-                const cell = getCellHTML('cards-characters',  `./detail-card.html?id=${character.id}&type=character`, character.thumbnailUrl, character.name,  character.name);
-                content += cell;
-            }
-            containerCards.innerHTML = content;
-            const totalResults = document.getElementById('total-results');
-            totalResults.innerHTML = charactersResponse.total;
-            displayPaged(charactersResponse.total, limit, page, 'index.html');
-        }, 
-        (error) => {
-            showErrorMessage();
+var displayResultCharacters = function (nameStartsWith, orderBy) {
+    var promise = fetchCharacters(offset, limit, nameStartsWith, orderBy);
+    promise.then(function (charactersResponse) {
+        var content = '';
+        for (var _i = 0, _a = charactersResponse.characters; _i < _a.length; _i++) {
+            var character = _a[_i];
+            var cell = getCellHTML('cards-characters', "./detail-card.html?id=" + character.id + "&type=character", character.thumbnailUrl, character.name, character.name);
+            content += cell;
         }
-    );
+        containerCards.innerHTML = content;
+        var totalResults = document.getElementById('total-results');
+        totalResults.innerHTML = charactersResponse.total;
+        displayPaged(charactersResponse.total, limit, page, 'index.html');
+    }, function (error) {
+        showErrorMessage();
+    });
 };
-
 // ------------------RESULTS COMICS-------------------------
-const displayResultComics = (nameStartsWith, orderBy) => {   
-    const promise = fetchComics(offset, limit, nameStartsWith, orderBy);
-    promise.then(
-        (comicsResponse) => {
-            let content = '';
-            for (const comic of comicsResponse.comics) {
-                const cell = getCellHTML('cards-comics', `./detail-card.html?id=${comic.id}&type=comic` , comic.thumbnailUrl, comic.title,  comic.title);
-                content += cell;
-                //
-            }
-            containerCards.innerHTML = content;
-            const totalResults = document.getElementById('total-results');
-            totalResults.innerHTML = comicsResponse.total;
-            displayPaged(comicsResponse.total, limit, page, 'index.html')
-        }, 
-        (error) => {
-            showErrorMessage();
+var displayResultComics = function (nameStartsWith, orderBy) {
+    var promise = fetchComics(offset, limit, nameStartsWith, orderBy);
+    promise.then(function (comicsResponse) {
+        var content = '';
+        for (var _i = 0, _a = comicsResponse.comics; _i < _a.length; _i++) {
+            var comic = _a[_i];
+            var cell = getCellHTML('cards-comics', "./detail-card.html?id=" + comic.id + "&type=comic", comic.thumbnailUrl, comic.title, comic.title);
+            content += cell;
+            //
         }
-    );
+        containerCards.innerHTML = content;
+        var totalResults = document.getElementById('total-results');
+        totalResults.innerHTML = comicsResponse.total;
+        displayPaged(comicsResponse.total, limit, page, 'index.html');
+    }, function (error) {
+        showErrorMessage();
+    });
 };
-
 // ------------------DISPLAY BY FILTER-------------------------
-const searchByFilters = (event) =>{    
-    event.preventDefault(); 
-    const form = event.target;
-
+var searchByFilters = function (event) {
+    event.preventDefault();
+    var form = event.target;
     params.set("type", form.typeselect.value);
-    
-    params.set("orderby",  form.orderselect.value);
-    
-    if(form.namestartswith.value != ''){
-        params.set("namestartswith", form.namestartswith.value); 
-    }else{
-        params.delete("namestartswith");      
+    params.set("orderby", form.orderselect.value);
+    if (form.namestartswith.value != '') {
+        params.set("namestartswith", form.namestartswith.value);
     }
-
-    params.delete("page");
-        
-    window.location.href=`index.html?${params}`;
+    else {
+        params["delete"]("namestartswith");
+    }
+    params["delete"]("page");
+    window.location.href = "index.html?" + params;
 };
-
-const setCurrentSearchParameters = (type, nameStartWith, orderBy) => {
+var setCurrentSearchParameters = function (type, nameStartWith, orderBy) {
     formSearch.namestartswith.value = nameStartWith;
     formSearch.orderselect.value = orderBy;
     formSearch.typeselect.value = type;
-}
-
-const showErrorMessage = () => {
+};
+var showErrorMessage = function () {
     error.innerHTML = messageError('Algo salió mal, por favor intenta más tarde.');
     containerCards.innerHTML = '';
     document.querySelector('.results-numbers').innerHTML = '';
-}
-
+};
 formSearch.addEventListener('submit', searchByFilters);
-typeSelect.addEventListener('change', () => {buildOrderBySelectByType(formSearch.typeselect.value)});
-
-let type = params.get("type") || 'comics';
-let nameStartWith = params.get("namestartswith");
-let orderBy = params.get("orderby");
-
-
+typeSelect.addEventListener('change', function () { buildOrderBySelectByType(formSearch.typeselect.value); });
+var type = params.get("type") || 'comics';
+var nameStartWith = params.get("namestartswith");
+var orderBy = params.get("orderby");
 setCurrentSearchParameters(type, nameStartWith, orderBy);
 buildOrderBySelectByType(type);
 displayGridCard(type, nameStartWith, orderBy);
-
