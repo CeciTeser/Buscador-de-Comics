@@ -49,12 +49,12 @@
             background-color: $secondary-color;
             color: $third-color;
         };
-
         .text-display{
             width: 35rem;
             display: flex;
             flex-direction: column;
             padding: 30px 0px 0px 20px;
+
 
             p{
                 font-size: 1rem;
@@ -68,5 +68,18 @@
                 }
             }
         }
+        
     }
+};
+#title-results{
+    font-size: 1.5rem;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    color: rgb(34, 38, 45);
+    padding-top: 2rem;
+}
+.results-numbers{
+    font-size: 1.5rem;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    color: rgb(62, 71, 87);
+    padding-top: 2rem;
 };

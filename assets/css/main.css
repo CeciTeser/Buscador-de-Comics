@@ -271,6 +271,18 @@ body {
           border-bottom: 1px solid black;
           color: #3e4757; }
 
+#title-results {
+  font-size: 1.5rem;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  color: #22262d;
+  padding-top: 2rem; }
+
+.results-numbers {
+  font-size: 1.5rem;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  color: #3e4757;
+  padding-top: 2rem; }
+
 .footer {
   width: 100%;
   height: 5rem;
