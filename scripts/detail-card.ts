@@ -28,7 +28,7 @@ const fetchDetail = () => {
                 fetchCharactersByComic(id, offset, limit).then(
                     (charactersResponse) => {
                         for (const character of charactersResponse.characters) {
-                            const cell = getCellHTML('cards-characters', `./detail-card.html?id=${character.id}&type=character`, character.thumbnailUrl, character.name,  character.name);
+                            const cell = getCellHTML('col', `./detail-card.html?id=${character.id}&type=character`, character.thumbnailUrl, character.name,  character.name);
                             content += cell;
                         }
                         titleResults.innerHTML = 'Personajes';
@@ -54,7 +54,7 @@ const fetchDetail = () => {
                 fetchComicsByCharacter(id, offset, limit).then(
                     (comicsResponse) => {
                         for(const comic of comicsResponse.comics){
-                            const cell = getCellHTML('cards-comics', `./detail-card.html?id=${comic.id}&type=comic`, comic.thumbnailUrl, comic.title,  comic.title);
+                            const cell = getCellHTML('col', `./detail-card.html?id=${comic.id}&type=comic`, comic.thumbnailUrl, comic.title,  comic.title);
                             content += cell;
                         }
                         titleResults.innerHTML = 'Comics';

@@ -108,3 +108,39 @@ var messageError = function (message) {
     var alertHtml = "\n    <div class=\"alert alert-dark\" role=\"alert\">\n        <h4 class=\"alert-heading\">Ups!</h4>\n        <p>" + message + "</p>\n    </div>\n    ";
     return alertHtml;
 };
+// ------------------MODE LIGHT/DARK-------------------------
+var btnSwitch = document.getElementById('switch');
+var btnIcon = document.getElementById('theme-icon');
+var btnIconSun = document.getElementById('theme-icon-Sun');
+var configWindow = window.matchMedia('(prefers-color-scheme: dark)');
+var storage = localStorage.getItem('theme-dark-light');
+var darkMode = document.getElementById('moonDark');
+var lightMode = document.getElementById('sunLight');
+if (storage === 'dark') {
+    document.body.classList.toggle('dark-theme');
+}
+else if (storage === 'light') {
+    document.body.classList.toggle('light-theme');
+}
+btnSwitch.addEventListener('click', function () {
+    var themeColor;
+    if (configWindow.matches) {
+        document.body.classList.toggle('light-theme');
+        themeColor = document.body.classList.contains('light-theme') ? 'light' : 'dark';
+    }
+    else {
+        document.body.classList.toggle('dark-theme');
+        themeColor = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+    }
+    localStorage.setItem('theme-dark-light', themeColor);
+});
+btnSwitch.addEventListener('click', function () {
+    if (document.body.className == 'dark-theme') {
+        btnIcon.classList.add('d-none');
+        btnIconSun.classList.remove('d-none');
+    }
+    else {
+        btnIconSun.classList.add('d-none');
+        btnIcon.classList.remove('d-none');
+    }
+});
