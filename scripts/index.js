@@ -24,7 +24,7 @@ var displayResultCharacters = function (nameStartsWith, orderBy) {
         var content = '';
         for (var _i = 0, _a = charactersResponse.characters; _i < _a.length; _i++) {
             var character = _a[_i];
-            var cell = getCellHTML('cards-characters', "./detail-card.html?id=" + character.id + "&type=character", character.thumbnailUrl, character.name, character.name);
+            var cell = getCellHTML('col', "./detail-card.html?id=" + character.id + "&type=character", character.thumbnailUrl, character.name, character.name);
             content += cell;
         }
         containerCards.innerHTML = content;
@@ -42,7 +42,7 @@ var displayResultComics = function (nameStartsWith, orderBy) {
         var content = '';
         for (var _i = 0, _a = comicsResponse.comics; _i < _a.length; _i++) {
             var comic = _a[_i];
-            var cell = getCellHTML('cards-comics', "./detail-card.html?id=" + comic.id + "&type=comic", comic.thumbnailUrl, comic.title, comic.title);
+            var cell = getCellHTML('col', "./detail-card.html?id=" + comic.id + "&type=comic", comic.thumbnailUrl, comic.title, comic.title);
             content += cell;
             //
         }
