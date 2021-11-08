@@ -1,6 +1,6 @@
 #container-paged{
-    justify-content: center;
-    text-align: center;
+    justify-content: $justify-content;
+    text-align: $text-align;
     margin-top: 3rem;
     nav{
         display: inline-block;
@@ -12,11 +12,14 @@
         margin: 5px;
 
         a{
-            color: rgb(62, 71, 87);
+            color: $text-color;
             text-decoration: none;
-            font-family: 'Barlow Semi Condensed', sans-serif;
+            font-family: $font-family-base;
             font-size: 18px;
             letter-spacing: 0.03rem;
+        }
+        a:hover{
+            color: $secondary-color;
         }
     };
 };

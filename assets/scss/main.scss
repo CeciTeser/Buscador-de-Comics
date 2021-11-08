@@ -1,21 +1,24 @@
-@import "./base/reset.scss";
+@import "../scss/base/reset";
 @import "./base/typography";
-@import "./utils/variables";
+
+@import "../scss/utils/variables";
+@import "../scss/utils/mixins";
+
 @import "./components/loading";
 @import "./components/search";
 @import "./components/results";
+@import "./components/toggle";
 @import "./components/paged";
+
 @import "./layout/header";
 @import "./layout/container-cards";
-@import "./layout/comics";
-@import "./layout/characters";
-@import "./layout/detail-cards.scss";
+@import "../scss/layout/detail-cards";
 @import "./layout/footer";
 
 
 
 body{
-    display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Barlow Semi Condensed', sans-serif;
 };

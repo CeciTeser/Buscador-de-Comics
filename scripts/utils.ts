@@ -148,39 +148,23 @@ const messageError = (message: string) => {
 
 const btnSwitch = document.getElementById('switch');
 const btnIcon = document.getElementById('theme-icon');
-const btnIconSun = document.getElementById('theme-icon-Sun');
 const configWindow = window.matchMedia('(prefers-color-scheme: dark)');
 const storage = localStorage.getItem('theme-dark-light');
-const darkMode = document.getElementById('moonDark');
-const lightMode = document.getElementById('sunLight');
+const mode = storage ? storage : (configWindow.matches ? 'dark' : 'light');
 
-if (storage === 'dark') {
-    document.body.classList.toggle('dark-theme')
-} else if (storage === 'light') {
-    document.body.classList.toggle('light-theme')
-}
+document.body.className = mode + '-theme';
 
 btnSwitch.addEventListener('click', () => {
-    let themeColor;
-    if (configWindow.matches) {
-        document.body.classList.toggle('light-theme')
-        themeColor = document.body.classList.contains('light-theme') ? 'light' : 'dark'
+    let themeColor = localStorage.getItem('theme-dark-light');
+    const x = themeColor ? themeColor : (configWindow.matches ? 'dark' : 'light');
+
+    if (x == 'dark') {
+        themeColor = 'light';
+        btnIcon.className = 'fas fa-moon';
     } else {
-        document.body.classList.toggle('dark-theme')
-        themeColor = document.body.classList.contains('dark-theme') ? 'dark' : 'light'
+        themeColor = 'dark';
+        btnIcon.className = 'fas fa-sun';
     }
-    localStorage.setItem('theme-dark-light', themeColor)
+    document.body.className = themeColor + '-theme';
+    localStorage.setItem('theme-dark-light', themeColor);
 })
-
-btnSwitch.addEventListener('click', () =>{
-    if(document.body.className == 'dark-theme'){
-        btnIcon.classList.add('d-none');
-        btnIconSun.classList.remove('d-none');
-
-    } else{
-        btnIconSun.classList.add('d-none');
-        btnIcon.classList.remove('d-none');
-    }
-})
-
-

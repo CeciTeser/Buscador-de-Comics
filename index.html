@@ -1,69 +1,93 @@
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css">
     <link rel="shortcut icon" href="./assets/img/hulk.png">
     <link rel="stylesheet" href="./assets/css/main.css">
     <title>ADA Comics</title>
 </head>
-<body>
-    <header class="header">
-            <h1>ADA COMICS</h1>
-            <div class="img-header">
+<body class="light-theme">
+    <header class="header site-header">
+        <div class="container-fluid p-0 align-items-center justify-content-center">
+            <div class="p-2 justify-content-center d-flex">
+                <h1 class="text-center text-white">ADA COMICS</h1>
             </div>
+            <div class="container-fluid p-0">
+            <img class="img-fluid img-header" src="assets/img/Marvel-Movies-the-avengers-13621669-2560-1600-e1336019698955.jpg" alt="Imagen Encabezado">
+            </div>
+        </div>
     </header>
+
+    <div class="container-fluid d-flex justify-content-end mt-3">
+        <button type="button" class="justify-content-around btn btn-dark" id="switch" aria-label="Cambiar tema de pantalla">
+            <!-- <span id="theme-icon"><i class="fas fa-moon"></i></span> -->
+            <span  class=""><i id="theme-icon" class="fas fa-sun"></i></span>
+        </button>
+    </div>
+        
     <main>
         <div id="error"></div>
-        <div class="search">
-
+       
+        <div class="container search mt-5 ml-5">
             <h2>BÚSQUEDA</h2>
 
-            <div class="search-container">
-                <form id="form-search" action="">
-                    <div class="search-input-container">
-                        <i class="fas fa-search"></i>
-                        <input class="search-input" type="text" placeholder="Ingresá tu búsqueda" id="name-starts-with" name="namestartswith">
-                    </div>
-                    <div class="search-inner-container">
-                        <div>
-                            <label>Tipo</label>
-                            <select class="type-select" aria-label="select type" id="type-select" name="typeselect"> 
-                                <option value="comics" selected>COMICS</option>
-                                <option value="characters" >PERSONAJES</option>
-                            </select>
-
-                            <label>Orden</label>
-                            <select class="order-select" aria-label="select order" id="order-select" name="orderselect"> 
-                            </select>
+            <div class="container-fluid  p-0 search-container mt-3">
+                <form class="form-row justify-content-between " id="form-search" action="">
+                    <div class="input-group">
+                        <div class="input-group-prepend  search-input-container p-0">
+                            <span class="input-group-text"><i class="fab fa-searchengin "></i></span>
                         </div>
-                        <button type="submit" class="search-button">BUSCAR</button>
+                        <input class="search-input form-control border border-white" type="text" placeholder="Ingresa tu búsqueda" id="name-starts-with" name="namestartswith" aria-describedby="Ingresa tu búsqueda">
+                    </div>
+                    
+
+                    <div class="search-inner-container d-flex justify-content-end align-items-center">
+                        <div class="form-group row">
+                            <div class="select-type">
+                            <label class="col-form-label sm-ml-2 sm-mt-2" for="type-select">Tipo</label>
+                        
+                            <select class="type-select" aria-describedby="Selecciona personaje o comics" id="type-select" name="typeselect"> s
+                                <option value="comics" selected>COMICS</option>
+                                <option value="characters"  >PERSONAJES</option>
+                            </select>
+                            </div>
+                            <div class="select-type">
+                            <label class="col-form-label sm-ml-2 sm-mt-2" for="order-select">Orden</label>
+                            <select class="order-select" aria-describedby="Selecciona orden vista" id="order-select" name="orderselect"> 
+                            </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-sm search-button">BUSCAR</button>
                     </div>
                 </form>
             </div>
         </div>
 
-        <section class="results-container">
-            <h3>RESULTADOS</h3>
-            <p class="results-numbers"><span id="total-results"></span> RESULTADOS</p>
-        </section>
+        <div class="container results-container">
+            <h3 class="mt-5">RESULTADOS</h3>
+            <p class="results-numbers p-0 mt-4 mb-4"><span id="total-results"></span> RESULTADOS</p>
+        </div>
 
-        <section>
-            <div id="container-cards"> 
+        <div class="container justify-content-sm-center d-flex">
+            <div class="row justify-content-between d-flex" id="container-cards"> 
             </div>
-        </section>
+        </div>
 
         <div id="container-paged">
             <nav>
                 <ul id="pages"></ul>
             </nav>
         </div>
+
         <div class="loader-container hidden" id="loader-container">
             <div class="loader"></div>
         </div>
     </main>
-    <footer class="footer"><img src="./assets/img/superheroe.svg" alt="superhero"></footer>
+    
+    <footer class="footer w-100 d-flex justify-content-center align-items-center"><img src="./assets/img/superheroe.svg" alt="superhero"></footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>

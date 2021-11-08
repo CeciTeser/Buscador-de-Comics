@@ -1,65 +1,87 @@
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/main.css">
+    <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css">
     <link rel="shortcut icon" href="./assets/img/iron.png">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    
     <title>ADA Comics</title>
 </head>
 <body>
-    <header class="header">
-            <h1>ADA COMICS</h1>
-            <div id="img-header-detail">
+    <header class="header site-header">
+        <div class="container-fluid p-0 align-items-center justify-content-center">
+            <div class="p-2 justify-content-center d-flex">
+                <h1 class="text-center text-white">ADA COMICS</h1>
             </div>
+            <div id="img-header-detail" class="container-fluid p-0">
+              
+            </div>
+        </div>
     </header>
+    <div class="container-fluid d-flex justify-content-between mt-3">
+        <div>
+            <a href="javascript:history.back()" class="back-btn btn">Volver</a>
+            </div>
+            <button type="button" class="justify-content-around btn btn-dark" id="switch" aria-label="Cambiar tema de pantalla">
+                <span id="theme-icon"><i class="fas fa-moon"></i></span>
+                <span id="theme-icon-Sun" class="d-none"><i class="fas fa-sun"></i></span>
+            </button>
+        </div>
     <main>
         <div id="error"></div>
         
-        <div class="search">
-
+        <div class="container search mt-5">
             <h2>BÚSQUEDA</h2>
 
-            <div class="search-container">
-                <form id="form-search" action="index.html">
-                    <div class="search-input-container">
-                        <i class="fas fa-search"></i>
-                        <input class="search-input" type="text" placeholder="Ingresá tu búsqueda" name="namestartswith">
+            <div class="search-container container-fluid p-0 mt-3">
+                <form class="form-row justify-content-between" id="form-search" action="index.html">
+                    <div class="input-group">
+                    <div class="search-input-container input-group-prepend p-0">
+                        <span class="input-group-text"><i class="fab fa-searchengin "></i></span>
                     </div>
-                    <div class="search-inner-container">
-                        <div>
-                            <label>Tipo</label>
-                            <select class="type-select" aria-label="select type" id="type-select" name="typeselect"> 
+                        <input class="search-input form-control border border-white" type="text" placeholder="Ingresa tu búsqueda" name="namestartswith" id="name-starts-with"  aria-describedby="Ingresa tu búsqueda">
+                    </div>
+
+                    <div class="search-inner-container d-flex align-items-center justify-content-end">
+                        <div class="form-group row">
+                            <div class="select-type">
+                            <label class="col-form-label sm-ml-2 sm-mt-2" for="type-select">Tipo</label>
+
+                            <select class="type-select" aria-describedby="Selecciona personaje o comics" id="type-select" name="typeselect"> 
                                 <option value="comics" selected>COMICS</option>
                                 <option value="characters" >PERSONAJES</option>
                             </select>
+                            </div>
+                            <div class="select-type">
+                            <label class="col-form-label sm-ml-2 sm-mt-2" for="order-select">Orden</label>
 
-                            <label>Orden</label>
                             <select class="order-select" aria-label="select order" id="order-select" name="orderselect"> 
                             </select>
+                            </div>
                         </div>
-                        <button type="submit" class="search-button" id="search-button">BUSCAR</button>
+                        <button type="submit" class="btn btn-sm search-button" id="search-button">BUSCAR</button>
                     </div>
                 </form>
             </div>
         </div>
-        <section>
-            <div id="container-detail-card">
-                <div class="cardDetail">
-                    <div class="img-text-display">
-                        <img id="image-detail" src="" alt="">
-                        <div id="description-detail" class="text-display"></div>
-                        <a href="javascript:history.back()" class="back-btn">Volver</a>
+        <div class="container mt-5 d-flex">
+            <div class="container mt-5" id="container-detail-card">
+                <div class="container cardDetail">
+                    <div class="img-text-display d-flex ">
+                        <img id="image-detail" src="" alt="Imagen Informativa">
+                        <div id="description-detail" class="text-display"></div>  
                     </div>
                 </div>
             </div>
-        </section>
-        <section>
+        </div>
+        <div class="container">
             <h3 id="title-results"><h3>
             <p class="results-numbers"><span id="total-results"></span> RESULTADOS</p>
-            <div id="container-cards"></div>
-        </section>
+            <div class="row justify-content-between d-flex" id="container-cards"></div>
+            </div>
 
         <div id="container-paged">
             <nav>
@@ -72,7 +94,8 @@
         </div>
 
     </main>
-    <footer class="footer"><img src="./assets/img/superheroe.svg" alt="superhero"></footer>
+    <footer class="footer w-100 d-flex justify-content-center align-items-center"><img src="./assets/img/superheroe.svg" alt="superhero"></footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
@@ -81,7 +104,5 @@
     <script src="./scripts/service.js"></script>
     <script src="./scripts/utils.js"></script>
     <script src="./scripts/detail-card.js"></script>
-
-    
 </body>
 </html>

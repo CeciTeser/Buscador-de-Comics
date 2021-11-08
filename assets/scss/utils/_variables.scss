@@ -1,3 +1,52 @@
+///////////Patrón de Colores///////////////////
 $primary-color:white;
 $secondary-color: red;
 $third-color: black;
+$footer-color:#50545D;
+$color-bg-dark: #333;
+$btn-back: #F3EAEA;
+$text-color: #3E4757;
+$color-text-secondary:#c7c1c1;
+$result-color: #22262D;
+$mode-dark: #181818;
+$btn-search: whitesmoke;
+$icon-color: #6B6C76;
+$switch-color:#110B24;
+$mode-dark-after: #F1F1F1;
+$mode-dark-active: orange;
+$numbers-color:#7A7B8F;
+
+
+/////////////Border & bg////////////////////////
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-dark: 500;
+$font-weight-bolder: bolder;
+$font-weight-bold: bold;
+$box-shadow-lg: 0 26px 24px -16px rgba($third-color, 40%);
+$box-shadow-dark: 0px 0px 2px rgba(126, 99, 99, 0.2);
+$border-radius: 3px;
+
+
+////////////// Typography////////////////////////
+$font-family-title:'Bangers', cursive;
+$font-family-base: 'Barlow Semi Condensed', sans-serif;
+$font-family-aux: Arial, Helvetica, sans-serif;
+
+
+//////// Sizes (font-sizes-margin-padd) /////////
+$font-size-base: 1rem;
+$size-height: 350px;
+$width-percentage-total: 100%;
+$height-percentage-total: 100%;
+$size-margin: 20px;
+
+
+////////////////////Flex/////////////////////////
+$display-base: flex;
+$display-x: block;
+$display-direction: column;
+$text-align: center;
+$align-items: center;
+$justify-content: center;
+$justify-content-between: space-between;
