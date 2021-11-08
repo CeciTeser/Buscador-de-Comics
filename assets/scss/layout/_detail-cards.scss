@@ -1,0 +1,140 @@
+.header{
+    .img-header-detail-comic{
+    height: $size-height;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.3)), url('/assets/img/comics.jpg');
+    object-fit: contain; 
+    background-position: center; 
+    background-size: cover;       
+    };
+
+    .img-header-detail-character{
+        height: $size-height;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.3)), url('/assets/img/characters.jpg');
+        object-fit: contain; 
+        background-position: center; 
+        background-size: cover;       
+        };
+};
+.back-btn{
+    width: 5rem;
+    height: 2.3rem;
+    border-radius: $border-radius;
+    background-color: $third-color;
+    color: $btn-back;
+    text-decoration: none;
+    font-size: $font-size-base;
+    font-weight: $font-weight-light;
+    transition: 0.4s;
+    letter-spacing: 0.1rem;
+    text-align: $text-align;
+    margin-bottom: 15px;
+};
+
+.back-btn:hover{
+    color: $secondary-color;
+};
+
+.cardDetail{
+    height: $height-percentage-total;
+    display: $display-base;
+    flex-wrap: wrap;
+
+    .img-text-display{
+        display: $display-base;
+        
+        #image-detail{
+            height: 550px;
+            margin-bottom: $size-margin;
+        }
+        
+        .text-display{
+            display: $display-base;
+            flex-direction: $display-direction;
+            margin-left: $size-margin;            
+
+            h2{
+                font-weight: $font-weight-bolder;
+            }
+
+            p{
+                font-size: $font-size-base;
+                font-family: $font-family-base;
+                color: $text-color;
+                margin-top: $size-margin;
+
+                span{
+                    font-size: 1.2rem;
+                    border-bottom: 1px solid $third-color;
+                    color: $text-color;
+                }
+            }
+        }       
+    }
+};
+#switch{
+    height: $height-percentage-total;
+}
+#title-results{
+    font-size: 1.5rem;
+    color: $result-color;
+    padding-top: 2rem;
+    font-weight: $font-weight-bolder;
+}
+.results-numbers{
+    font-size: $font-size-base;
+    font-family: $font-family-base;
+    color: $text-color;
+    padding-top: $font-size-base;
+    font-weight: $font-weight-bolder;
+};
+@media screen and (max-width: 976px) { 
+    .cardDetail{
+        justify-content: $justify-content;
+        align-content: center;
+
+        .img-text-display{
+            flex-direction: $display-direction;
+            justify-content: $justify-content;
+        }
+    }   
+}
+@media screen and (max-width: 587px) {   
+    .cardDetail{
+        justify-content: $justify-content;
+        align-content: center;
+
+        .img-text-display{
+            width: 80%;
+            margin-left: 0px;
+            flex-direction: $display-direction;
+            justify-content: $justify-content;
+            #image-detail{
+                height: 350px;
+            }
+        }
+    }   
+}
+@media screen and (max-width: 420px) {
+    .cardDetail{
+        padding: 0;
+        margin: 0;
+        .img-text-display{
+            width: 80%;
+            margin-left: 0px;
+            #image-detail{
+                height: 350px;
+            }
+        }
+        .text-display{
+            width: 10em;
+        }
+    }
+    .container{
+        #title-results{
+            margin-left: $size-margin;
+        }
+        .results-numbers{
+            margin-left: $size-margin; 
+        }
+    }
+}
