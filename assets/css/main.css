@@ -88,6 +88,7 @@ body {
   font-size: 26px;
   padding: 0;
   padding-bottom: 5px;
+  border: transparent;
 }
 
 .search .search-container #form-search .select-type {
@@ -140,6 +141,9 @@ body {
   .form-group {
     margin-left: 50px;
   }
+  .search-inner-container {
+    align-items: center;
+  }
 }
 
 @media screen and (max-width: 992px) {
@@ -153,22 +157,16 @@ body {
   .form-row .search-input-container .input-group-text {
     margin-top: 20px;
   }
-  .form-row .search-inner-container {
-    margin-left: 50px;
-  }
-  .form-row .search-inner-container .search-button {
-    margin-right: 50px;
-  }
 }
 
 @media screen and (max-width: 768px) {
   .form-row {
     display: block;
     flex-direction: column;
-    justify-content: center;
   }
   .form-row .input-group {
     font-size: 18px;
+    width: 100%;
   }
   .form-row .input-group .search-input-container {
     margin-bottom: 20px;
@@ -179,8 +177,14 @@ body {
     padding-bottom: 5px;
   }
   .form-row .search-inner-container {
-    justify-content: start;
     margin-top: 20px;
+    margin-right: 20px;
+  }
+  .form-row .search-inner-container .form-group {
+    margin-left: 0px;
+  }
+  .form-row .search-button {
+    margin-left: 15px;
   }
 }
 
@@ -192,7 +196,6 @@ body {
     display: block;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
   }
   .form-row .input-group {
     width: 100%;
@@ -203,21 +206,24 @@ body {
     padding-bottom: 5px;
   }
   .form-row .input-group .form-control::placeholder {
-    font-size: 12px;
+    font-size: 1rem;
   }
   .form-row .search-inner-container {
     display: block;
     flex-direction: column;
     justify-content: end;
+    align-items: start;
     margin-bottom: 20px;
     margin-left: 0;
   }
   .form-row .search-inner-container .form-group {
     flex-direction: column;
     display: block;
+    margin: 0;
   }
   .form-row .search-inner-container .search-button {
     margin-top: 20px;
+    margin-left: 10px;
   }
 }
 
@@ -248,16 +254,26 @@ body.dark-theme {
   color: white;
 }
 
-body.dark-theme .search-input-container {
-  background-color: white;
-  border-radius: 3px;
+body.dark-theme .input-group {
+  background-color: transparent;
+  color: white;
+}
+
+body.dark-theme .input-group .input-group-text {
+  color: #b1aeae;
+}
+
+body.dark-theme .input-group .search-input {
+  background-color: transparent;
+  color: white;
+  border: transparent;
+}
+
+body.dark-theme .input-group .search-input .form-control::placeholder {
+  color: white;
 }
 
 body.dark-theme .results-numbers {
-  color: #c7c1c1;
-}
-
-body.dark-theme .search-inner-container label {
   color: #c7c1c1;
 }
 
