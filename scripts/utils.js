@@ -110,22 +110,24 @@ var messageError = function (message) {
 };
 // ------------------MODE LIGHT/DARK-------------------------
 var btnSwitch = document.getElementById('switch');
-var btnIcon = document.getElementById('theme-icon');
 var configWindow = window.matchMedia('(prefers-color-scheme: dark)');
 var storage = localStorage.getItem('theme-dark-light');
-var mode = storage ? storage : (configWindow.matches ? 'dark' : 'light');
-document.body.className = mode + '-theme';
+if (storage === 'dark') {
+    document.body.classList.toggle('dark-theme');
+}
+else if (storage === 'light') {
+    document.body.classList.toggle('light-theme');
+}
 btnSwitch.addEventListener('click', function () {
-    var themeColor = localStorage.getItem('theme-dark-light');
-    var x = themeColor ? themeColor : (configWindow.matches ? 'dark' : 'light');
-    if (x == 'dark') {
-        themeColor = 'light';
-        btnIcon.className = 'fas fa-moon';
+    var themeColor;
+    console.log(configWindow);
+    if (configWindow.matches) {
+        document.body.classList.toggle('light-theme');
+        themeColor = document.body.classList.contains('light-theme') ? 'light' : 'dark';
     }
     else {
-        themeColor = 'dark';
-        btnIcon.className = 'fas fa-sun';
+        document.body.classList.toggle('dark-theme');
+        themeColor = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
     }
-    document.body.className = themeColor + '-theme';
     localStorage.setItem('theme-dark-light', themeColor);
 });

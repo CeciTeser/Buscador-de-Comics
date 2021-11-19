@@ -147,24 +147,23 @@ const messageError = (message: string) => {
 // ------------------MODE LIGHT/DARK-------------------------
 
 const btnSwitch = document.getElementById('switch');
-const btnIcon = document.getElementById('theme-icon');
 const configWindow = window.matchMedia('(prefers-color-scheme: dark)');
 const storage = localStorage.getItem('theme-dark-light');
-const mode = storage ? storage : (configWindow.matches ? 'dark' : 'light');
-
-document.body.className = mode + '-theme';
+if(storage === 'dark'){
+    document.body.classList.toggle('dark-theme')
+} else if(storage === 'light'){
+    document.body.classList.toggle('light-theme')
+}
 
 btnSwitch.addEventListener('click', () => {
-    let themeColor = localStorage.getItem('theme-dark-light');
-    const x = themeColor ? themeColor : (configWindow.matches ? 'dark' : 'light');
-
-    if (x == 'dark') {
-        themeColor = 'light';
-        btnIcon.className = 'fas fa-moon';
+    let themeColor;
+    console.log(configWindow)
+    if(configWindow.matches){
+        document.body.classList.toggle('light-theme')
+        themeColor = document.body.classList.contains('light-theme') ? 'light' : 'dark'
     } else {
-        themeColor = 'dark';
-        btnIcon.className = 'fas fa-sun';
+        document.body.classList.toggle('dark-theme')
+        themeColor = document.body.classList.contains('dark-theme') ? 'dark' : 'light'
     }
-    document.body.className = themeColor + '-theme';
     localStorage.setItem('theme-dark-light', themeColor);
 })

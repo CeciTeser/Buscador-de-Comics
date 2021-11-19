@@ -6,18 +6,26 @@ body{
 body.dark-theme{
     background-color: $color-bg-dark;
     color: $primary-color;
-    .search-input-container{
-        background-color: $primary-color;
-        border-radius: 3px;
+    .input-group{
+        background-color: transparent;
+        color: $primary-color;
+        .input-group-text{
+            color: rgb(177, 174, 174);
+        }
+        .search-input{
+            background-color: transparent;
+            color: $primary-color;
+            border: transparent;
+            .form-control::placeholder{
+                color: $primary-color;
+            }
+        }
     }
+
     .results-numbers{
         color: $color-text-secondary;
     }
-    .search-inner-container{
-        label{
-            color: $color-text-secondary;
-        }
-    }
+   
     #pages{
         li{
             a{
@@ -26,8 +34,7 @@ body.dark-theme{
             a:hover{
                 color: $secondary-color;
             }
-        }
-        
+        }    
     }
     #description-detail{
         p{
