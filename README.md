@@ -1,7 +1,10 @@
 # Buscador-de-Comics
 En este proyecto hemos realizado una aplicación que permite listar cómics y sus personaje, a la vez que obtener información sobre los mismos. Para eso hemos utilizado una API REST con datos reales, que nos ha permitido hacer consultas a la misma pasándole distintos parámetros que permitan personalizar la búsqueda y mostrar los datos obtenidos como respuesta.
+
 Lo hemos hecho entre:
+
 María Cecilia Teisaire: https://github.com/CeciTeser
+
 ElianaCoria: https://github.com/ElianaCoria
 
 Jhailing Ramos: https://github.com/Jhailing
